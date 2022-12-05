@@ -11,34 +11,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.crud.messages.MessagesActivity;
 import com.example.crud.MoviesActivity;
 import com.example.crud.R;
-import com.example.crud.series.SeriesActivity;
+import com.example.crud.series.SeriesListActivity;
 import com.example.crud.templates.TemplatesActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class DashBoardsAdapter extends RecyclerView.Adapter<DashBoardViewHolder> {
+public class DashboardAdapter extends RecyclerView.Adapter<DashboardViewHolder> {
 
-    public ArrayList<Dashboard> dashBoards;
+    public ArrayList<Dashboard> dashboards;
 
-    public void setData(ArrayList<Dashboard> dashBoards) {
-        this.dashBoards = dashBoards;
+    public void setData(ArrayList<Dashboard> dashboards) {
+        this.dashboards = dashboards;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public DashBoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DashboardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dash_board_item, parent, false);
-        DashBoardViewHolder dashBoardViewHolder = new DashBoardViewHolder(view);
-        return dashBoardViewHolder;
+        DashboardViewHolder dashboardViewHolder = new DashboardViewHolder(view);
+        return dashboardViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DashBoardViewHolder holder, int position) {
-        Dashboard dashBoard = dashBoards.get(position);
-        Picasso.get().load(dashBoard.imageUrl).into(holder.imageImg);
-        holder.titleTxt.setText(dashBoard.title);
+    public void onBindViewHolder(@NonNull DashboardViewHolder holder, int position) {
+        Dashboard dashboard = dashboards.get(position);
+        Picasso.get().load(dashboard.imageUrl).into(holder.imageImg);
+        holder.titleTxt.setText(dashboard.title);
         holder.itemView.setOnClickListener(view -> {
             if (holder.titleTxt.getText().toString().equalsIgnoreCase("Messages")) {
                 Intent intent = new Intent(holder.itemView.getContext(), MessagesActivity.class);
@@ -47,7 +47,7 @@ public class DashBoardsAdapter extends RecyclerView.Adapter<DashBoardViewHolder>
                 Intent intent = new Intent(holder.itemView.getContext(), TemplatesActivity.class);
                 holder.itemView.getContext().startActivity(intent);
             } else if (holder.titleTxt.getText().toString().equalsIgnoreCase("Series")) {
-                Intent intent = new Intent(holder.itemView.getContext(), SeriesActivity.class);
+                Intent intent = new Intent(holder.itemView.getContext(), SeriesListActivity.class);
                 holder.itemView.getContext().startActivity(intent);
             } else if (holder.titleTxt.getText().toString().equalsIgnoreCase("Movies")) {
                 Intent intent = new Intent(holder.itemView.getContext(), MoviesActivity.class);
@@ -58,6 +58,6 @@ public class DashBoardsAdapter extends RecyclerView.Adapter<DashBoardViewHolder>
 
     @Override
     public int getItemCount() {
-        return dashBoards.size();
+        return dashboards.size();
     }
 }

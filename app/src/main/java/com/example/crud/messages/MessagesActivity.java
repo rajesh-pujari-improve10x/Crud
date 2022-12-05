@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -37,7 +36,7 @@ public class MessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_activity);
         getSupportActionBar().setTitle("Messages");
-        messageRv();
+        messagesRv();
     }
 
     public void showVisible() {
@@ -93,7 +92,7 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
-    public void messageRv() {
+    public void messagesRv() {
         progressBar = findViewById(R.id.progress_bar);
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
@@ -114,7 +113,6 @@ public class MessagesActivity extends AppCompatActivity {
         });
         messagesRv.setAdapter(messagesAdapter);
     }
-
 
     public void deleteMessage(String id) {
         CrudApi crudApi = new CrudApi();

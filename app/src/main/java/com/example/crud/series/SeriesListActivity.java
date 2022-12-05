@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SeriesActivity extends AppCompatActivity {
+public class SeriesListActivity extends AppCompatActivity {
 
     public ArrayList<Series> series = new ArrayList<>();
     public RecyclerView seriesRv;
@@ -78,7 +78,7 @@ public class SeriesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-                Toast.makeText(SeriesActivity.this, "Failed to load Data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SeriesListActivity.this, "Failed to load Data", Toast.LENGTH_SHORT).show();
                 hideVisible();
             }
         });
@@ -110,7 +110,7 @@ public class SeriesActivity extends AppCompatActivity {
             @Override
             public void onEdit(Series series) {
                 editSeries(series);
-                Toast.makeText(SeriesActivity.this, "Successfully Edit Series", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SeriesListActivity.this, "Successfully Edit Series", Toast.LENGTH_SHORT).show();
             }
         });
         seriesRv.setAdapter(seriesAdapter);
@@ -128,7 +128,7 @@ public class SeriesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SeriesActivity.this, "Failed Deleted Series", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SeriesListActivity.this, "Failed Deleted Series", Toast.LENGTH_SHORT).show();
             }
         });
     }
