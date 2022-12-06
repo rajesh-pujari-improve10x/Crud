@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.messages.MessagesActivity;
-import com.example.crud.MoviesActivity;
+import com.example.crud.movies.MoviesActivity;
 import com.example.crud.R;
 import com.example.crud.series.SeriesListActivity;
 import com.example.crud.templates.TemplatesActivity;
@@ -29,7 +29,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardViewHolder> 
     @NonNull
     @Override
     public DashboardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dash_board_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_item, parent, false);
         DashboardViewHolder dashboardViewHolder = new DashboardViewHolder(view);
         return dashboardViewHolder;
     }

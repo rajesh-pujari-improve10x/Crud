@@ -1,15 +1,16 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MoviesActivity extends AppCompatActivity {
+import com.example.crud.R;
+
+public class AddEditMovieActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movies);
-        getSupportActionBar().setTitle("Movies");
+        setContentView(R.layout.activity_add_edit_movie);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.crud.network;
 
+import com.example.crud.movies.Movie;
 import com.example.crud.series.Series;
 import com.example.crud.templates.Template;
 import com.example.crud.messages.Message;
@@ -51,4 +52,7 @@ public interface CrudService {
 
     @PUT("rajeshSeries/{id}")
     Call<Void> updateSeries(@Path("id") String id, @Body Series series);
+
+    @GET("movies")
+    Call<List<Movie>> fetchMovies();
 }

@@ -108,7 +108,6 @@ public class TemplatesActivity extends AppCompatActivity {
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
         templatesAdapter = new TemplatesAdapter();
         templatesAdapter.setData(templates);
-        templatesRv.setAdapter(templatesAdapter);
         templatesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
@@ -122,6 +121,7 @@ public class TemplatesActivity extends AppCompatActivity {
                 editMessage(template);
             }
         });
+        templatesRv.setAdapter(templatesAdapter);
     }
 
     public void deleteMessage(String id) {
