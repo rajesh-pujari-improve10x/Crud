@@ -31,10 +31,11 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_series);
         initView();
         if (getIntent().hasExtra("Series")) {
-            getSupportActionBar().setTitle("Add Series");
+            getSupportActionBar().setTitle("Edit Series");
             this.series = (Series) getIntent().getSerializableExtra("Series");
+            showSeries();
         } else {
-
+            getSupportActionBar().setTitle("Add Series");
         }
     }
 
@@ -53,7 +54,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
             if (this.series == null) {
                 addSeries(seriesId, seriesImageUrl, seriesName);
             } else {
-                updateSeries(seriesId, seriesName, seriesImageUrl);
+                updateSeries(this.series.id, seriesId, seriesImageUrl, seriesName);
             }
             return true;
         } else {
@@ -67,12 +68,18 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         seriesImageUrlTxt = findViewById(R.id.series_image_url_txt);
     }
 
-    public void addSeries(String id, String imageUrl, String title) {
-        this.series = new Series(id, imageUrl, title);
+    public void showSeries() {
+        seriesIdTxt.setText(series.seriesId);
+        seriesNameTxt.setText(series.title);
+        seriesImageUrlTxt.setText(series.imageUrl);
+    }
+
+    public void addSeries(String seriesId, String imageUrl, String title) {
+        this.series = new Series(seriesId, imageUrl, title);
 
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
-        Call<Series> call = crudService.createSeries(series);
+        Call<Series> call = crudService.createSeriesList(series);
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {
@@ -86,8 +93,8 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         });
     }
 
-    public void updateSeries(String id, String imageUrl, String title) {
-        series = new Series(id, imageUrl, title);
+    public void updateSeries(String id, String seriesId, String imageUrl, String title) {
+        series = new Series(seriesId, imageUrl, title);
 
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();

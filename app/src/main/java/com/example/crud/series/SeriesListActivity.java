@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class SeriesListActivity extends AppCompatActivity {
 
-    public ArrayList<Series> series = new ArrayList<>();
+    public ArrayList<Series> seriesList = new ArrayList<>();
     public RecyclerView seriesRv;
     public SeriesAdapter seriesAdapter;
     public ProgressBar progressBar;
@@ -100,7 +100,7 @@ public class SeriesListActivity extends AppCompatActivity {
     public void setupSeriesRv() {
         seriesRv.setLayoutManager(new LinearLayoutManager(this));
         seriesAdapter = new SeriesAdapter();
-        seriesAdapter.setData(series);
+        seriesAdapter.setData(seriesList);
         seriesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
@@ -135,7 +135,7 @@ public class SeriesListActivity extends AppCompatActivity {
 
     public void editSeries(Series series) {
         Intent intent = new Intent(this, AddEditSeriesActivity.class);
-        intent.putExtra("Series", this.series);
+        intent.putExtra("Series", series);
         startActivity(intent);
     }
 }

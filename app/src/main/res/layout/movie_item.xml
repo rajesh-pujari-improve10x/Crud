@@ -26,6 +26,7 @@
             android:paddingLeft="4dp"
             android:paddingTop="8dp"
             android:paddingRight="4dp"
+            android:paddingBottom="4dp"
             android:text="TextView" />
     </LinearLayout>
 

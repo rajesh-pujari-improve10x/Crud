@@ -2,7 +2,9 @@ package com.example.crud.series;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Series {
+import java.io.Serializable;
+
+public class Series implements Serializable {
 
     @SerializedName("_id")
     public String id;
@@ -14,8 +16,8 @@ public class Series {
     public Series() {
     }
 
-    public Series(String id, String imageUrl, String title) {
-        this.seriesId = id;
+    public Series(String seriesId, String imageUrl, String title) {
+        this.seriesId = seriesId;
         this.imageUrl = imageUrl;
         this.title = title;
     }

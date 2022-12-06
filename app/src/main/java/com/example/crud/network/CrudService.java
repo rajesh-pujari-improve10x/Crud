@@ -45,7 +45,7 @@ public interface CrudService {
     Call<List<Series>> fetchSeries();
 
     @POST("rajeshSeries")
-    Call<Series> createSeries(@Body Series series);
+    Call<Series> createSeriesList(@Body Series series);
 
     @DELETE("rajeshSeries/{id}")
     Call<Void> deleteSeries(@Path("id") String id);
@@ -53,6 +53,15 @@ public interface CrudService {
     @PUT("rajeshSeries/{id}")
     Call<Void> updateSeries(@Path("id") String id, @Body Series series);
 
-    @GET("movies")
+    @GET("rajeshMovies")
     Call<List<Movie>> fetchMovies();
+
+    @POST("rajeshMovies")
+    Call<Movie> createMovie(@Body Movie movie);
+
+    @DELETE("rajeshMovies/{id}")
+    Call<Void> deleteMovie(@Path("id") String id);
+
+    @PUT("rajeshMovies/{id}")
+    Call<Void> updateMovie(@Path("id") String id, @Body Movie movie);
 }
