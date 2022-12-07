@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
@@ -33,9 +34,9 @@ public class AddEditMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
         initView();
-        if (getIntent().hasExtra("Message")) {
+        if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
             getSupportActionBar().setTitle("Edit Message");
-            this.message = (Message) getIntent().getSerializableExtra("Message");
+            this.message = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
             showData();
         } else {
             getSupportActionBar().setTitle("Add Message");

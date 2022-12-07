@@ -1,5 +1,6 @@
 package com.example.crud.network;
 
+import com.example.crud.Constants;
 import com.example.crud.movies.Movie;
 import com.example.crud.series.Series;
 import com.example.crud.templates.Template;
@@ -17,51 +18,51 @@ import retrofit2.http.Path;
 
 public interface CrudService {
 
-    @GET("venusMessageHistory")
+    @GET(Constants.MESSAGES_END_POINT)
     Call<List<Message>> fetchMessages();
 
-    @POST("venusMessageHistory")
+    @POST(Constants.MESSAGES_END_POINT)
     Call<Message> createMessage(@Body Message message);
 
-    @DELETE("venusMessageHistory/{id}")
+    @DELETE(Constants.MESSAGES_END_POINT + "/{id}")
     Call<Void> deleteMessage(@Path("id") String id);
 
-    @PUT("venusMessageHistory/{id}")
+    @PUT(Constants.MESSAGES_END_POINT + "/{id}")
     Call<Void> updateMessage(@Path("id") String id, @Body Message message);
 
-    @GET("venusTemplates")
+    @GET(Constants.TEMPLATES_END_POINT)
     Call<List<Template>> fetchTemplates();
 
-    @POST("venusTemplates")
+    @POST(Constants.TEMPLATES_END_POINT)
     Call<Template> createTemplate(@Body Template template);
 
-    @DELETE("venusTemplates/{id}")
+    @DELETE(Constants.TEMPLATES_END_POINT + "/{id}")
     Call<Void> deleteTemplate(@Path("id") String id);
 
-    @PUT("venusTemplates/{id}")
+    @PUT(Constants.TEMPLATES_END_POINT + "/{id}")
     Call<Void> updateTemplate(@Path("id") String id, @Body Template template);
 
-    @GET("rajeshSeries")
+    @GET(Constants.SERIES_END_POINT)
     Call<List<Series>> fetchSeries();
 
-    @POST("rajeshSeries")
+    @POST(Constants.SERIES_END_POINT)
     Call<Series> createSeriesList(@Body Series series);
 
-    @DELETE("rajeshSeries/{id}")
+    @DELETE(Constants.SERIES_END_POINT + "/{id}")
     Call<Void> deleteSeries(@Path("id") String id);
 
-    @PUT("rajeshSeries/{id}")
+    @PUT(Constants.SERIES_END_POINT + "/{id}")
     Call<Void> updateSeries(@Path("id") String id, @Body Series series);
 
-    @GET("rajeshMovies")
+    @GET(Constants.MOVIES_END_POINT)
     Call<List<Movie>> fetchMovies();
 
-    @POST("rajeshMovies")
+    @POST(Constants.MOVIES_END_POINT)
     Call<Movie> createMovie(@Body Movie movie);
 
-    @DELETE("rajeshMovies/{id}")
+    @DELETE(Constants.MOVIES_END_POINT + "/{id}")
     Call<Void> deleteMovie(@Path("id") String id);
 
-    @PUT("rajeshMovies/{id}")
+    @PUT(Constants.MOVIES_END_POINT + "/{id}")
     Call<Void> updateMovie(@Path("id") String id, @Body Movie movie);
 }

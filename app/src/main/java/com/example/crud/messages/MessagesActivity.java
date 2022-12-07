@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
@@ -134,7 +135,7 @@ public class MessagesActivity extends AppCompatActivity {
 
     public void editMessage(Message message) {
         Intent intent = new Intent(this, AddEditMessageActivity.class);
-        intent.putExtra("Message", message);
+        intent.putExtra(Constants.KEY_MESSAGE, message);
         startActivity(intent);
     }
 }

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
@@ -79,7 +80,7 @@ public class TemplatesActivity extends AppCompatActivity {
 
     public void editMessage(Template template) {
         Intent intent = new Intent(this, AddEditTemplateActivity.class);
-        intent.putExtra("template", template);
+        intent.putExtra(Constants.KEY_TEMPLATE, template);
         startActivity(intent);
     }
 
