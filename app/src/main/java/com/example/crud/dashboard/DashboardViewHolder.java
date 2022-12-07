@@ -11,8 +11,8 @@ import com.example.crud.R;
 
 public class DashboardViewHolder extends RecyclerView.ViewHolder {
 
-    public ImageView imageImg;
-    public TextView titleTxt;
+    ImageView imageImg;
+    TextView titleTxt;
 
     public DashboardViewHolder(@NonNull View itemView) {
         super(itemView);

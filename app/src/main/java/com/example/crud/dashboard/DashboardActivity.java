@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    public ArrayList<Dashboard> dashboards;
-    public RecyclerView dashboardRv;
-    public Dashboard dashboard;
-    public DashboardAdapter dashboardAdapter;
+    private ArrayList<Dashboard> dashboards;
+    private RecyclerView dashboardRv;
+    private Dashboard dashboard;
+    private DashboardAdapter dashboardAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class DashboardActivity extends AppCompatActivity {
         setupDashboardRv();
     }
 
-    public void setupData() {
+    private void setupData() {
         dashboards = new ArrayList<>();
 
         this.dashboard = new Dashboard("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Messages");
@@ -42,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
         dashboards.add(this.dashboard);
     }
 
-    public void setupDashboardRv() {
+    private void setupDashboardRv() {
         dashboardRv = findViewById(R.id.dashboard_rv);
         dashboardRv.setLayoutManager(new LinearLayoutManager(this));
         dashboardAdapter = new DashboardAdapter();
