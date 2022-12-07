@@ -22,12 +22,12 @@ import retrofit2.Response;
 
 public class AddEditMessageActivity extends AppCompatActivity {
 
-    public Message message;
-    public EditText nameTxt;
-    public EditText phoneNumberTxt;
-    public EditText messageTxt;
-    public CrudApi crudApi;
-    public CrudService crudService;
+    private Message message;
+    private EditText nameTxt;
+    private EditText phoneNumberTxt;
+    private EditText messageTxt;
+    private CrudApi crudApi;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         messageTxt = findViewById(R.id.message_txt);
     }
 
-    public void addMessage(String name, String phoneNumber, String message) {
+    private void addMessage(String name, String phoneNumber, String message) {
         this.message = new Message(name, phoneNumber, message);
 
         networkMethods();
@@ -91,13 +91,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         });
     }
 
-    public void showData() {
+    private void showData() {
         nameTxt.setText(this.message.name);
         phoneNumberTxt.setText(this.message.phoneNumber);
         messageTxt.setText(this.message.messageText);
     }
 
-    public void updateMessage(String id, String name, String phoneNumber, String message) {
+    private void updateMessage(String id, String name, String phoneNumber, String message) {
         this.message = new Message(name, phoneNumber, message);
 
         networkMethods();
@@ -116,7 +116,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         });
     }
 
-    public void networkMethods() {
+    private void networkMethods() {
         crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
     }

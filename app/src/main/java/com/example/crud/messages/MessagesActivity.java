@@ -27,10 +27,10 @@ import retrofit2.Response;
 
 public class MessagesActivity extends AppCompatActivity {
 
-    public ArrayList<Message> messages = new ArrayList<>();
-    public RecyclerView messagesRv;
-    public MessagesAdapter messagesAdapter;
-    public ProgressBar progressBar;
+    private ArrayList<Message> messages = new ArrayList<>();
+    private RecyclerView messagesRv;
+    private MessagesAdapter messagesAdapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,11 @@ public class MessagesActivity extends AppCompatActivity {
         messagesRv();
     }
 
-    public void showVisible() {
+    private void showVisible() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideVisible() {
+    private void hideVisible() {
         progressBar.setVisibility(View.GONE);
     }
 
@@ -72,7 +72,7 @@ public class MessagesActivity extends AppCompatActivity {
         }
     }
 
-    public void fetchData() {
+    private void fetchData() {
         showVisible();
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
@@ -93,7 +93,7 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
-    public void messagesRv() {
+    private void messagesRv() {
         progressBar = findViewById(R.id.progress_bar);
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
@@ -115,7 +115,7 @@ public class MessagesActivity extends AppCompatActivity {
         messagesRv.setAdapter(messagesAdapter);
     }
 
-    public void deleteMessage(String id) {
+    private void deleteMessage(String id) {
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
         Call<Void> call = crudService.deleteMessage(id);
@@ -133,7 +133,7 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
-    public void editMessage(Message message) {
+    private void editMessage(Message message) {
         Intent intent = new Intent(this, AddEditMessageActivity.class);
         intent.putExtra(Constants.KEY_MESSAGE, message);
         startActivity(intent);
