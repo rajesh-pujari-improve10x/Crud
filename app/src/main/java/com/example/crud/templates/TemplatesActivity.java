@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -28,17 +27,17 @@ import retrofit2.Response;
 
 public class TemplatesActivity extends AppCompatActivity {
 
-    public ArrayList<Template> templates = new ArrayList<>();
-    public RecyclerView templatesRv;
-    public TemplatesAdapter templatesAdapter;
-    public ProgressBar progressBar;
+    private ArrayList<Template> templates = new ArrayList<>();
+    private RecyclerView templatesRv;
+    private TemplatesAdapter templatesAdapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates);
         getSupportActionBar().setTitle("Templates");
-        initView();
+        initViews();
         setupTemplatesRv();
     }
 
@@ -65,26 +64,26 @@ public class TemplatesActivity extends AppCompatActivity {
         fetchData();
     }
 
-    public void initView() {
+    private void initViews() {
         progressBar = findViewById(R.id.progress_bar);
         templatesRv = findViewById(R.id.templates_rv);
     }
 
-    public void showVisible() {
+    private void showVisible() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideVisible() {
+    private void hideVisible() {
         progressBar.setVisibility(View.GONE);
     }
 
-    public void editMessage(Template template) {
+    private void editMessage(Template template) {
         Intent intent = new Intent(this, AddEditTemplateActivity.class);
         intent.putExtra(Constants.KEY_TEMPLATE, template);
         startActivity(intent);
     }
 
-    public void fetchData() {
+    private void fetchData() {
         showVisible();
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
@@ -105,7 +104,7 @@ public class TemplatesActivity extends AppCompatActivity {
         });
     }
 
-    public void setupTemplatesRv() {
+    private void setupTemplatesRv() {
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
         templatesAdapter = new TemplatesAdapter();
         templatesAdapter.setData(templates);
@@ -125,7 +124,7 @@ public class TemplatesActivity extends AppCompatActivity {
         templatesRv.setAdapter(templatesAdapter);
     }
 
-    public void deleteMessage(String id) {
+    private void deleteMessage(String id) {
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
         Call<Void> call = crudService.deleteTemplate(id);

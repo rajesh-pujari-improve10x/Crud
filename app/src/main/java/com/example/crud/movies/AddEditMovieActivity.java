@@ -26,16 +26,16 @@ import retrofit2.Response;
 
 public class AddEditMovieActivity extends AppCompatActivity {
 
-    public EditText movieIdTxt;
-    public EditText movieNameTxt;
-    public Spinner seriesSp;
-    public EditText imageUrlTxt;
-    public EditText descriptionTxt;
-    public CustomSeriesAdapter customSeriesAdapter;
-    public ArrayList<Series> seriesList = new ArrayList<>();
-    public CrudApi crudApi;
-    public CrudService crudService;
-    public Movie movie;
+    private EditText movieIdTxt;
+    private EditText movieNameTxt;
+    private Spinner seriesSp;
+    private EditText imageUrlTxt;
+    private EditText descriptionTxt;
+    private CustomSeriesAdapter customSeriesAdapter;
+    private ArrayList<Series> seriesList = new ArrayList<>();
+    private CrudApi crudApi;
+    private CrudService crudService;
+    private Movie movie;
 
 
     @Override
@@ -54,7 +54,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
-    public void initViews() {
+    private void initViews() {
         movieIdTxt = findViewById(R.id.movie_id_txt);
         movieNameTxt = findViewById(R.id.movie_name_txt);
         seriesSp = findViewById(R.id.series_sp);
@@ -88,17 +88,17 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
-    public void setupSeriesListSp() {
+    private void setupSeriesListSp() {
         customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesAdapter);
     }
 
-    public void apiClasses() {
+    private void apiClasses() {
         crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
     }
 
-    public void showData() {
+    private void showData() {
         movieIdTxt.setText(movie.moviesId);
         movieNameTxt.setText(movie.title);
         imageUrlTxt.setText(movie.imageUrl);
@@ -111,7 +111,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
-    public void fetchSeriesList() {
+    private void fetchSeriesList() {
         apiClasses();
         Call<List<Series>> call = crudService.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
@@ -140,7 +140,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
          String description = descriptionTxt.getText().toString();
     }*/
 
-    public void addMovie(String movieId, String movieName, String seriesId, String imageUrl, String description) {
+    private void addMovie(String movieId, String movieName, String seriesId, String imageUrl, String description) {
         this.movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
 
         apiClasses();
@@ -158,7 +158,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         });
     }
 
-    public void updateMovie(String id, String movieId, String movieName, String seriesId, String imageUrl, String description) {
+    private void updateMovie(String id, String movieId, String movieName, String seriesId, String imageUrl, String description) {
         movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
 
         apiClasses();

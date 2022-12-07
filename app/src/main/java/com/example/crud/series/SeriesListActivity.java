@@ -27,10 +27,10 @@ import retrofit2.Response;
 
 public class SeriesListActivity extends AppCompatActivity {
 
-    public ArrayList<Series> seriesList = new ArrayList<>();
-    public RecyclerView seriesRv;
-    public SeriesAdapter seriesAdapter;
-    public ProgressBar progressBar;
+    private ArrayList<Series> seriesList = new ArrayList<>();
+    private RecyclerView seriesRv;
+    private SeriesAdapter seriesAdapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class SeriesListActivity extends AppCompatActivity {
         fetchData();
     }
 
-    public void fetchData() {
+    private void fetchData() {
         showVisible();
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
@@ -85,20 +85,20 @@ public class SeriesListActivity extends AppCompatActivity {
         });
     }
 
-    public void initView() {
+    private void initView() {
         seriesRv = findViewById(R.id.series_rv);
         progressBar = findViewById(R.id.progress_bar);
     }
 
-    public void showVisible() {
+    private void showVisible() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideVisible() {
+    private void hideVisible() {
         progressBar.setVisibility(View.GONE);
     }
 
-    public void setupSeriesRv() {
+    private void setupSeriesRv() {
         seriesRv.setLayoutManager(new LinearLayoutManager(this));
         seriesAdapter = new SeriesAdapter();
         seriesAdapter.setData(seriesList);
@@ -117,7 +117,7 @@ public class SeriesListActivity extends AppCompatActivity {
         seriesRv.setAdapter(seriesAdapter);
     }
 
-    public void deleteSeries(String id) {
+    private void deleteSeries(String id) {
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
         Call<Void> call = crudService.deleteSeries(id);
@@ -134,7 +134,7 @@ public class SeriesListActivity extends AppCompatActivity {
         });
     }
 
-    public void editSeries(Series series) {
+    private void editSeries(Series series) {
         Intent intent = new Intent(this, AddEditSeriesActivity.class);
         intent.putExtra(Constants.KEY_SERIES, series);
         startActivity(intent);

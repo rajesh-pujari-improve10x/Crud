@@ -20,10 +20,10 @@ import retrofit2.Response;
 
 public class AddEditSeriesActivity extends AppCompatActivity {
 
-    public Series series;
-    public EditText seriesIdTxt;
-    public EditText seriesNameTxt;
-    public EditText seriesImageUrlTxt;
+    private Series series;
+    private EditText seriesIdTxt;
+    private EditText seriesNameTxt;
+    private EditText seriesImageUrlTxt;
 
 
     @Override
@@ -63,19 +63,19 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         }
     }
 
-    public void initView() {
+    private void initView() {
         seriesIdTxt = findViewById(R.id.series_id_txt);
         seriesNameTxt = findViewById(R.id.series_name_txt);
         seriesImageUrlTxt = findViewById(R.id.series_image_url_txt);
     }
 
-    public void showSeries() {
+    private void showSeries() {
         seriesIdTxt.setText(series.seriesId);
         seriesNameTxt.setText(series.title);
         seriesImageUrlTxt.setText(series.imageUrl);
     }
 
-    public void addSeries(String seriesId, String imageUrl, String title) {
+    private void addSeries(String seriesId, String imageUrl, String title) {
         this.series = new Series(seriesId, imageUrl, title);
 
         CrudApi crudApi = new CrudApi();
@@ -94,7 +94,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         });
     }
 
-    public void updateSeries(String id, String seriesId, String imageUrl, String title) {
+    private void updateSeries(String id, String seriesId, String imageUrl, String title) {
         series = new Series(seriesId, imageUrl, title);
 
         CrudApi crudApi = new CrudApi();

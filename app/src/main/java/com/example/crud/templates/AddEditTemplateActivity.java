@@ -20,8 +20,8 @@ import retrofit2.Response;
 
 public class AddEditTemplateActivity extends AppCompatActivity {
 
-    public Template template;
-    public EditText messageTxt;
+    private Template template;
+    private EditText messageTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +58,11 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         }
     }
 
-    public void initView() {
+    private void initView() {
         messageTxt = findViewById(R.id.message_txt);
     }
 
-    public void addMessage(String message) {
+    private void addMessage(String message) {
         Template template = new Template();
         template.messageText = message;
 
@@ -83,11 +83,11 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         });
     }
 
-    public void showData() {
+    private void showData() {
         messageTxt.setText(template.messageText);
     }
 
-    public void updateMessage(String id, String message) {
+    private void updateMessage(String id, String message) {
         Template template = new Template();
         template.messageText = message;
 

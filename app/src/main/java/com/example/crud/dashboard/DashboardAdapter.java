@@ -21,7 +21,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardViewHolder> 
 
     private ArrayList<Dashboard> dashboards;
 
-    public void setData(ArrayList<Dashboard> dashboards) {
+    void setData(ArrayList<Dashboard> dashboards) {
         this.dashboards = dashboards;
         notifyDataSetChanged();
     }
