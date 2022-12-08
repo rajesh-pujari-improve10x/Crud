@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.crud.messages.MessagesActivity;
 import com.example.crud.movies.MoviesActivity;
 import com.example.crud.R;
-import com.example.crud.series.SeriesListActivity;
+import com.example.crud.network.series.SeriesListActivity;
 import com.example.crud.templates.TemplatesActivity;
 import com.squareup.picasso.Picasso;
 

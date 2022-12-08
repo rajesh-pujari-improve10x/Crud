@@ -1,6 +1,4 @@
-package com.example.crud.series;
-
-import com.example.crud.series.Series;
+package com.example.crud.network.series;
 
 public interface OnItemActionListener {
 

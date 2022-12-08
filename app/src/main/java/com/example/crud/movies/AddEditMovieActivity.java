@@ -4,9 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -15,7 +15,7 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
-import com.example.crud.series.Series;
+import com.example.crud.network.series.Series;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +42,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
+        Log.i("AddEditMovieActivity", "onCreate Called");
         initViews();
         setupSeriesListSp();
         fetchSeriesList();

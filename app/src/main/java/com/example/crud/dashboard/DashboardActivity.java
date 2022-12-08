@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.crud.R;
 
@@ -21,6 +22,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
+        Log.i("DashBoardActivity", "onCreate Called");
         getSupportActionBar().setTitle("Dashboard");
         setupData();
         setupDashboardRv();

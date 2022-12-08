@@ -22,7 +22,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".series.AddEditSeriesActivity"
+            android:name=".network.series.AddEditSeriesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -50,7 +50,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".series.SeriesListActivity"
+            android:name=".network.series.SeriesListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

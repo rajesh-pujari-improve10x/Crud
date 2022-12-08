@@ -1,4 +1,4 @@
-package com.example.crud.series;
+package com.example.crud.network.series;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,7 @@ public class SeriesListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series);
+        Log.i("SeriesActivity", "onCreate Called");
         getSupportActionBar().setTitle("Series");
         initView();
         setupSeriesRv();
@@ -62,6 +64,7 @@ public class SeriesListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fetchData();
+        Log.i("SeriesActivity", "onResume Called");
     }
 
     private void fetchData() {

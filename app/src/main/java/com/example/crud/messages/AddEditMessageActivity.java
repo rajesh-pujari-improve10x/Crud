@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
+        Log.i("AddEditMessageActivity", "onCreate Called");
         initView();
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
             getSupportActionBar().setTitle("Edit Message");

@@ -1,4 +1,4 @@
-package com.example.crud.series;
+package com.example.crud.network.series;
 
 import android.view.LayoutInflater;
 import android.view.View;

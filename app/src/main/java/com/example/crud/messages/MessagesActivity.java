@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,7 @@ public class MessagesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_activity);
+        Log.i("MessagesActivity", "onCreate Called");
         getSupportActionBar().setTitle("Messages");
         messagesRv();
     }
@@ -52,6 +54,7 @@ public class MessagesActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fetchData();
+        Log.i("MessagesActivity", "onResume Called");
     }
 
     @Override
@@ -73,6 +76,7 @@ public class MessagesActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
+        Log.i("MessagesActivity", "fetching Messages Started Api");
         showVisible();
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
@@ -80,6 +84,7 @@ public class MessagesActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                Log.i("MessagesActivity", "Successfully received From Api");
                 hideVisible();
                 List<Message> messages = response.body();
                 messagesAdapter.setData(messages);

@@ -2,7 +2,7 @@ package com.example.crud.network;
 
 import com.example.crud.Constants;
 import com.example.crud.movies.Movie;
-import com.example.crud.series.Series;
+import com.example.crud.network.series.Series;
 import com.example.crud.templates.Template;
 import com.example.crud.messages.Message;
 
