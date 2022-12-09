@@ -1,4 +1,4 @@
-package com.example.crud.network.series;
+package com.example.crud.series;
 
 import android.view.View;
 import android.widget.ImageButton;

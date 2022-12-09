@@ -1,4 +1,4 @@
-package com.example.crud.network.series;
+package com.example.crud.series;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +32,8 @@ public class SeriesListActivity extends AppCompatActivity {
     private RecyclerView seriesRv;
     private SeriesAdapter seriesAdapter;
     private ProgressBar progressBar;
+    private CrudApi crudApi;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class SeriesListActivity extends AppCompatActivity {
         Log.i("SeriesActivity", "onCreate Called");
         getSupportActionBar().setTitle("Series");
         initView();
+        setupApiMethods();
         setupSeriesRv();
     }
 
@@ -67,10 +70,22 @@ public class SeriesListActivity extends AppCompatActivity {
         Log.i("SeriesActivity", "onResume Called");
     }
 
+    private void initView() {
+        seriesRv = findViewById(R.id.series_rv);
+        progressBar = findViewById(R.id.progress_bar);
+    }
+
+    private void setupApiMethods() {
+        crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
+    }
+
+    private void setupToast(String series) {
+        Toast.makeText(this, series, Toast.LENGTH_SHORT).show();
+    }
+
     private void fetchData() {
         showVisible();
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
         Call<List<Series>> call = crudService.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
             @Override
@@ -82,15 +97,10 @@ public class SeriesListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-                Toast.makeText(SeriesListActivity.this, "Failed to load Data", Toast.LENGTH_SHORT).show();
+                setupToast("Failed to load Data");
                 hideVisible();
             }
         });
-    }
-
-    private void initView() {
-        seriesRv = findViewById(R.id.series_rv);
-        progressBar = findViewById(R.id.progress_bar);
     }
 
     private void showVisible() {
@@ -114,15 +124,13 @@ public class SeriesListActivity extends AppCompatActivity {
             @Override
             public void onEdit(Series series) {
                 editSeries(series);
-                Toast.makeText(SeriesListActivity.this, "Successfully Edit Series", Toast.LENGTH_SHORT).show();
+                setupToast("Successfully Edit Series");
             }
         });
         seriesRv.setAdapter(seriesAdapter);
     }
 
     private void deleteSeries(String id) {
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
         Call<Void> call = crudService.deleteSeries(id);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -132,7 +140,7 @@ public class SeriesListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SeriesListActivity.this, "Failed Deleted Series", Toast.LENGTH_SHORT).show();
+                setupToast("Failed delete series");
             }
         });
     }

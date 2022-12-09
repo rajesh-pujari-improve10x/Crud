@@ -32,6 +32,8 @@ public class TemplatesActivity extends AppCompatActivity {
     private RecyclerView templatesRv;
     private TemplatesAdapter templatesAdapter;
     private ProgressBar progressBar;
+    private CrudApi crudApi;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class TemplatesActivity extends AppCompatActivity {
         Log.i("TemplatesActivity", "onCreate Called");
         getSupportActionBar().setTitle("Templates");
         initViews();
+        setupApiMethods();
         setupTemplatesRv();
     }
 
@@ -72,6 +75,15 @@ public class TemplatesActivity extends AppCompatActivity {
         templatesRv = findViewById(R.id.templates_rv);
     }
 
+    private void setupApiMethods() {
+        crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
+    }
+
+    private void setupToast(String template) {
+        Toast.makeText(this, template, Toast.LENGTH_SHORT).show();
+    }
+
     private void showVisible() {
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -80,16 +92,8 @@ public class TemplatesActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
-    private void editMessage(Template template) {
-        Intent intent = new Intent(this, AddEditTemplateActivity.class);
-        intent.putExtra(Constants.KEY_TEMPLATE, template);
-        startActivity(intent);
-    }
-
     private void fetchData() {
         showVisible();
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
         Call<List<Template>> call = crudService.fetchTemplates();
         call.enqueue(new Callback<List<Template>>() {
             @Override
@@ -101,7 +105,7 @@ public class TemplatesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Template>> call, Throwable t) {
-                Toast.makeText(TemplatesActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                setupToast("Failed to load data");
                 hideVisible();
             }
         });
@@ -114,13 +118,13 @@ public class TemplatesActivity extends AppCompatActivity {
         templatesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
-                Toast.makeText(TemplatesActivity.this, "Successfully Deleted", Toast.LENGTH_SHORT).show();
+                setupToast("Successfully Deleted");
                 deleteMessage(id);
             }
 
             @Override
             public void onEdit(Template template) {
-                Toast.makeText(TemplatesActivity.this, "Template Selected", Toast.LENGTH_SHORT).show();
+                setupToast("Template Selected");
                 editMessage(template);
             }
         });
@@ -128,20 +132,24 @@ public class TemplatesActivity extends AppCompatActivity {
     }
 
     private void deleteMessage(String id) {
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
         Call<Void> call = crudService.deleteTemplate(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(TemplatesActivity.this, "Successfully Deleted Template", Toast.LENGTH_SHORT).show();
+                setupToast("Successfully Deleted Template");
                 fetchData();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(TemplatesActivity.this, "Failed Delete Template", Toast.LENGTH_SHORT).show();
+                setupToast("Failed Delete Template");
             }
         });
+    }
+
+    private void editMessage(Template template) {
+        Intent intent = new Intent(this, AddEditTemplateActivity.class);
+        intent.putExtra(Constants.KEY_TEMPLATE, template);
+        startActivity(intent);
     }
 }

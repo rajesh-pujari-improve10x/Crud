@@ -32,14 +32,17 @@ public class MoviesActivity extends AppCompatActivity {
     private RecyclerView moviesRv;
     private MoviesAdapter moviesAdapter;
     private ProgressBar progressBar;
+    private CrudApi crudApi;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
         Log.i("MoviesActivity", "onCreate Called");
-        initViews();
         getSupportActionBar().setTitle("Movies");
+        initViews();
+        setupApiMethods();
         setupMoviesRv();
     }
 
@@ -72,6 +75,15 @@ public class MoviesActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
     }
 
+    private void setupApiMethods() {
+        crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
+    }
+
+    private void setupToast(String movie) {
+        Toast.makeText(this, movie, Toast.LENGTH_SHORT).show();
+    }
+
     private void showVisible() {
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -82,8 +94,6 @@ public class MoviesActivity extends AppCompatActivity {
 
     private void fetchMovies() {
         showVisible();
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
         Call<List<Movie>> call = crudService.fetchMovies();
         call.enqueue(new Callback<List<Movie>>() {
             @Override
@@ -91,13 +101,13 @@ public class MoviesActivity extends AppCompatActivity {
                 hideVisible();
                 List<Movie> movies = response.body();
                 moviesAdapter.setData(movies);
-                Toast.makeText(MoviesActivity.this, "Successfully loaded data", Toast.LENGTH_SHORT).show();
+                setupToast("Successfully loaded data");
             }
 
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
                 hideVisible();
-                Toast.makeText(MoviesActivity.this, "Failed load data", Toast.LENGTH_SHORT).show();
+                setupToast("Failed load data");
             }
         });
     }
@@ -121,8 +131,6 @@ public class MoviesActivity extends AppCompatActivity {
     }
 
     private void deleteMovie(String id) {
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
         Call<Void> call = crudService.deleteMovie(id);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -132,7 +140,7 @@ public class MoviesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(MoviesActivity.this, "Failed delete Movie", Toast.LENGTH_SHORT).show();
+                setupToast("Failed delete Movie");
             }
         });
     }

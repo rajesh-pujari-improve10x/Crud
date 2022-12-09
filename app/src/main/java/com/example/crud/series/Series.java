@@ -1,4 +1,4 @@
-package com.example.crud.network.series;
+package com.example.crud.series;
 
 import com.google.gson.annotations.SerializedName;
 

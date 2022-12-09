@@ -15,7 +15,7 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
-import com.example.crud.network.series.Series;
+import com.example.crud.series.Series;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +44,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_movie);
         Log.i("AddEditMovieActivity", "onCreate Called");
         initViews();
+        setupApiMethods();
         setupSeriesListSp();
         fetchSeriesList();
         if (getIntent().hasExtra(Constants.KEY_MOVIE)) {
@@ -53,14 +54,6 @@ public class AddEditMovieActivity extends AppCompatActivity {
         } else {
             getSupportActionBar().setTitle("Add Movie");
         }
-    }
-
-    private void initViews() {
-        movieIdTxt = findViewById(R.id.movie_id_txt);
-        movieNameTxt = findViewById(R.id.movie_name_txt);
-        seriesSp = findViewById(R.id.series_sp);
-        imageUrlTxt = findViewById(R.id.image_url_txt);
-        descriptionTxt = findViewById(R.id.description_txt);
     }
 
     @Override
@@ -89,14 +82,26 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
+    private void initViews() {
+        movieIdTxt = findViewById(R.id.movie_id_txt);
+        movieNameTxt = findViewById(R.id.movie_name_txt);
+        seriesSp = findViewById(R.id.series_sp);
+        imageUrlTxt = findViewById(R.id.image_url_txt);
+        descriptionTxt = findViewById(R.id.description_txt);
+    }
+
+    private void setupApiMethods() {
+        crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
+    }
+
+    private void setupToast(String movie) {
+        Toast.makeText(this, movie, Toast.LENGTH_SHORT).show();
+    }
+
     private void setupSeriesListSp() {
         customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesAdapter);
-    }
-
-    private void apiClasses() {
-        crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
     }
 
     private void showData() {
@@ -113,7 +118,6 @@ public class AddEditMovieActivity extends AppCompatActivity {
     }
 
     private void fetchSeriesList() {
-        apiClasses();
         Call<List<Series>> call = crudService.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
             @Override
@@ -127,24 +131,14 @@ public class AddEditMovieActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-
+                setupToast("Successfully loaded data");
             }
         });
     }
 
-    /*public void stringObj() {
-         String movieId = movieIdTxt.getText().toString();
-         String movieName = movieNameTxt.getText().toString();
-         Series series = (Series) seriesSp.getSelectedItem();
-         String seriesId = series.seriesId;
-         String imageUrl = imageUrlTxt.getText().toString();
-         String description = descriptionTxt.getText().toString();
-    }*/
-
     private void addMovie(String movieId, String movieName, String seriesId, String imageUrl, String description) {
         this.movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
 
-        apiClasses();
         Call<Movie> call = crudService.createMovie(this.movie);
         call.enqueue(new Callback<Movie>() {
             @Override
@@ -154,7 +148,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-                Toast.makeText(AddEditMovieActivity.this, "Failed to Add Movie", Toast.LENGTH_SHORT).show();
+                setupToast("Failed to Add Movie");
             }
         });
     }
@@ -162,7 +156,6 @@ public class AddEditMovieActivity extends AppCompatActivity {
     private void updateMovie(String id, String movieId, String movieName, String seriesId, String imageUrl, String description) {
         movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
 
-        apiClasses();
         Call<Void> call = crudService.updateMovie(id, movie);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -172,7 +165,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddEditMovieActivity.this, "Failed to update Movie", Toast.LENGTH_SHORT).show();
+                setupToast("Failed to update Movie");
             }
         });
     }

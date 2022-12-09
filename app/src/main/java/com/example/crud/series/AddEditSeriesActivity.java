@@ -1,4 +1,4 @@
-package com.example.crud.network.series;
+package com.example.crud.series;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +25,8 @@ public class AddEditSeriesActivity extends AppCompatActivity {
     private EditText seriesIdTxt;
     private EditText seriesNameTxt;
     private EditText seriesImageUrlTxt;
+    private CrudApi crudApi;
+    private CrudService crudService;
 
 
     @Override
@@ -33,6 +35,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_series);
         Log.i("AddEditSeriesActivity", "onCreate Called");
         initView();
+        setupApiMethods();
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
             getSupportActionBar().setTitle("Edit Series");
             this.series = (Series) getIntent().getSerializableExtra(Constants.KEY_SERIES);
@@ -71,6 +74,15 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         seriesImageUrlTxt = findViewById(R.id.series_image_url_txt);
     }
 
+    private void setupApiMethods() {
+        crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
+    }
+
+    private void setupToast(String series) {
+        Toast.makeText(this, series, Toast.LENGTH_SHORT).show();
+    }
+
     private void showSeries() {
         seriesIdTxt.setText(series.seriesId);
         seriesNameTxt.setText(series.title);
@@ -80,8 +92,6 @@ public class AddEditSeriesActivity extends AppCompatActivity {
     private void addSeries(String seriesId, String imageUrl, String title) {
         this.series = new Series(seriesId, imageUrl, title);
 
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
         Call<Series> call = crudService.createSeriesList(series);
         call.enqueue(new Callback<Series>() {
             @Override
@@ -91,7 +101,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Series> call, Throwable t) {
-                Toast.makeText(AddEditSeriesActivity.this, "Successfully Added Series", Toast.LENGTH_SHORT).show();
+                setupToast("Successfully Added Series");
             }
         });
     }
@@ -99,8 +109,6 @@ public class AddEditSeriesActivity extends AppCompatActivity {
     private void updateSeries(String id, String seriesId, String imageUrl, String title) {
         series = new Series(seriesId, imageUrl, title);
 
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
         Call<Void> call = crudService.updateSeries(id, series);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -110,7 +118,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddEditSeriesActivity.this, "Failed Edit Series", Toast.LENGTH_SHORT).show();
+                setupToast("Failed Edit Series");
             }
         });
     }

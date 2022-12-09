@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.crud.R;
-import com.example.crud.network.series.Series;
+import com.example.crud.series.Series;
 
 import java.util.List;
 
