@@ -39,7 +39,7 @@ public class SeriesListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series);
-        Log.i("SeriesActivity", "onCreate Called");
+        log("onCreate Called");
         getSupportActionBar().setTitle("Series");
         initView();
         setupApiMethods();
@@ -67,7 +67,11 @@ public class SeriesListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fetchData();
-        Log.i("SeriesActivity", "onResume Called");
+        log("onResume Called");
+    }
+
+    private void log(String series) {
+        Log.i("SeriesListActivity", series);
     }
 
     private void initView() {

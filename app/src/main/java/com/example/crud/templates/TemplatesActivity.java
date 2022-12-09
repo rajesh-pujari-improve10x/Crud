@@ -39,7 +39,7 @@ public class TemplatesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates);
-        Log.i("TemplatesActivity", "onCreate Called");
+        log("onCreate Called");
         getSupportActionBar().setTitle("Templates");
         initViews();
         setupApiMethods();
@@ -67,7 +67,11 @@ public class TemplatesActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fetchData();
-        Log.i("TemplatesActivity", "onResume Called");
+        log("onResume Called");
+    }
+
+    private void log(String template) {
+        Log.i("TemplatesActivity", template);
     }
 
     private void initViews() {

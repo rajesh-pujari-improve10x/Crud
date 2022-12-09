@@ -39,7 +39,7 @@ public class MoviesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
-        Log.i("MoviesActivity", "onCreate Called");
+        log("onCreate Called");
         getSupportActionBar().setTitle("Movies");
         initViews();
         setupApiMethods();
@@ -67,7 +67,11 @@ public class MoviesActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fetchMovies();
-        Log.i("MoviesActivity", "onResume Called");
+        log("onResume Called");
+    }
+
+    private void log(String movies) {
+        Log.i("MoviesActivity", movies);
     }
 
     private void initViews() {
