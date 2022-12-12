@@ -29,13 +29,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".templates.AddTemplateActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".templates.EditTemplateActivity"
             android:exported="false">
             <meta-data
@@ -43,7 +36,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".messages.AddEditMessageActivity"
+            android:name=".templates.AddTemplateActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".messages.EditMessageActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".messages.AddMessageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
