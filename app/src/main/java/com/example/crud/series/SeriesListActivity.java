@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
 
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SeriesListActivity extends AppCompatActivity {
+public class SeriesListActivity extends BaseActivity {
 
     private ArrayList<Series> seriesList = new ArrayList<>();
     private RecyclerView seriesRv;
@@ -70,10 +71,6 @@ public class SeriesListActivity extends AppCompatActivity {
         log("onResume Called");
     }
 
-    private void log(String series) {
-        Log.i("SeriesListActivity", series);
-    }
-
     private void initView() {
         seriesRv = findViewById(R.id.series_rv);
         progressBar = findViewById(R.id.progress_bar);
@@ -82,10 +79,6 @@ public class SeriesListActivity extends AppCompatActivity {
     private void setupApiMethods() {
         crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
-    }
-
-    private void setupToast(String series) {
-        Toast.makeText(this, series, Toast.LENGTH_SHORT).show();
     }
 
     private void fetchData() {
@@ -101,7 +94,7 @@ public class SeriesListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-                setupToast("Failed to load Data");
+                showToast("Failed to load Data");
                 hideVisible();
             }
         });
@@ -128,7 +121,7 @@ public class SeriesListActivity extends AppCompatActivity {
             @Override
             public void onEdit(Series series) {
                 editSeries(series);
-                setupToast("Successfully Edit Series");
+                showToast("Successfully Edit Series");
             }
         });
         seriesRv.setAdapter(seriesAdapter);
@@ -144,7 +137,7 @@ public class SeriesListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("Failed delete series");
+                showToast("Failed delete series");
             }
         });
     }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
 
@@ -19,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditSeriesActivity extends AppCompatActivity {
+public class AddEditSeriesActivity extends BaseActivity {
 
     private Series series;
     private EditText seriesIdTxt;
@@ -33,7 +34,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_series);
-        Log.i("AddEditSeriesActivity", "onCreate Called");
+        log("onCreate Called");
         initView();
         setupApiMethods();
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
@@ -79,10 +80,6 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         crudService = crudApi.createCrudService();
     }
 
-    private void setupToast(String series) {
-        Toast.makeText(this, series, Toast.LENGTH_SHORT).show();
-    }
-
     private void showSeries() {
         seriesIdTxt.setText(series.seriesId);
         seriesNameTxt.setText(series.title);
@@ -101,7 +98,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Series> call, Throwable t) {
-                setupToast("Successfully Added Series");
+                showToast("Successfully Added Series");
             }
         });
     }
@@ -118,7 +115,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("Failed Edit Series");
+                showToast("Failed Edit Series");
             }
         });
     }

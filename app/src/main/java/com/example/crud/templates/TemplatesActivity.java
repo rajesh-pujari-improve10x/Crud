@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
 
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TemplatesActivity extends AppCompatActivity {
+public class TemplatesActivity extends BaseActivity {
 
     private ArrayList<Template> templates = new ArrayList<>();
     private RecyclerView templatesRv;
@@ -70,10 +71,6 @@ public class TemplatesActivity extends AppCompatActivity {
         log("onResume Called");
     }
 
-    private void log(String template) {
-        Log.i("TemplatesActivity", template);
-    }
-
     private void initViews() {
         progressBar = findViewById(R.id.progress_bar);
         templatesRv = findViewById(R.id.templates_rv);
@@ -82,10 +79,6 @@ public class TemplatesActivity extends AppCompatActivity {
     private void setupApiMethods() {
         crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
-    }
-
-    private void setupToast(String template) {
-        Toast.makeText(this, template, Toast.LENGTH_SHORT).show();
     }
 
     private void showVisible() {
@@ -109,7 +102,7 @@ public class TemplatesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Template>> call, Throwable t) {
-                setupToast("Failed to load data");
+                showToast("Failed to load data");
                 hideVisible();
             }
         });
@@ -122,13 +115,13 @@ public class TemplatesActivity extends AppCompatActivity {
         templatesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
-                setupToast("Successfully Deleted");
+                showToast("Successfully Deleted");
                 deleteMessage(id);
             }
 
             @Override
             public void onEdit(Template template) {
-                setupToast("Template Selected");
+                showToast("Template Selected");
                 editMessage(template);
             }
         });
@@ -140,13 +133,13 @@ public class TemplatesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setupToast("Successfully Deleted Template");
+                showToast("Successfully Deleted Template");
                 fetchData();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("Failed Delete Template");
+                showToast("Failed Delete Template");
             }
         });
     }

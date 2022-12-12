@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
 import com.example.crud.series.Series;
@@ -24,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditMovieActivity extends AppCompatActivity {
+public class AddEditMovieActivity extends BaseActivity {
 
     private EditText movieIdTxt;
     private EditText movieNameTxt;
@@ -42,7 +43,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
-        Log.i("AddEditMovieActivity", "onCreate Called");
+        log("onCreate Called");
         initViews();
         setupApiMethods();
         setupSeriesListSp();
@@ -95,10 +96,6 @@ public class AddEditMovieActivity extends AppCompatActivity {
         crudService = crudApi.createCrudService();
     }
 
-    private void setupToast(String movie) {
-        Toast.makeText(this, movie, Toast.LENGTH_SHORT).show();
-    }
-
     private void setupSeriesListSp() {
         customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesAdapter);
@@ -131,7 +128,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-                setupToast("Successfully loaded data");
+                showToast("Successfully loaded data");
             }
         });
     }
@@ -148,7 +145,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-                setupToast("Failed to Add Movie");
+                showToast("Failed to Add Movie");
             }
         });
     }
@@ -165,7 +162,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("Failed to update Movie");
+                showToast("Failed to update Movie");
             }
         });
     }

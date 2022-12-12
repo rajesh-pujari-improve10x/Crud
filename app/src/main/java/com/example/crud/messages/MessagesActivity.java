@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
 
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MessagesActivity extends AppCompatActivity {
+public class MessagesActivity extends BaseActivity {
 
     private ArrayList<Message> messages = new ArrayList<>();
     private RecyclerView messagesRv;
@@ -43,10 +44,6 @@ public class MessagesActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Messages");
         messagesRv();
         setupApiMethods();
-    }
-
-    private void log(String message) {
-        Log.i("MessagesActivity", message);
     }
 
     private void showVisible() {
@@ -86,10 +83,6 @@ public class MessagesActivity extends AppCompatActivity {
         crudService = crudApi.createCrudService();
     }
 
-    private void setupToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
     private void fetchData() {
         log("fetching Messages Started Api");
         showVisible();
@@ -106,7 +99,7 @@ public class MessagesActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
                 hideVisible();
-                setupToast("Failed to load Messages");
+                showToast("Failed to load Messages");
             }
         });
     }
@@ -120,13 +113,13 @@ public class MessagesActivity extends AppCompatActivity {
         messagesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
-                setupToast("Successfully Deleted Message");
+                showToast("Successfully Deleted Message");
                 deleteMessage(id);
             }
 
             @Override
             public void onEdit(Message message) {
-                setupToast("Successfully Edited Message");
+                showToast("Successfully Edited Message");
                 editMessage(message);
             }
         });
@@ -140,13 +133,13 @@ public class MessagesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setupToast("Successfully deleted message");
+                showToast("Successfully deleted message");
                 fetchData();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("Failed to delete message");
+                showToast("Failed to delete message");
             }
         });
     }

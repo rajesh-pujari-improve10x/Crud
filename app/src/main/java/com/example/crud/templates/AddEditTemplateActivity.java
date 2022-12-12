@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
 
@@ -19,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditTemplateActivity extends AppCompatActivity {
+public class AddEditTemplateActivity extends BaseActivity {
 
     private Template template;
     private EditText messageTxt;
@@ -30,7 +31,7 @@ public class AddEditTemplateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_template);
-        Log.i("AddEditTemplateActivity", "onCreate Called");
+        log("onCreate Called");
         initView();
         setupApiMethods();
         if(getIntent().hasExtra(Constants.KEY_TEMPLATE)) {
@@ -72,10 +73,6 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         crudService = crudApi.createCrudService();
     }
 
-    private void setupToast(String template) {
-        Toast.makeText(this, template, Toast.LENGTH_SHORT).show();
-    }
-
     private void addMessage(String message) {
         Template template = new Template();
         template.messageText = message;
@@ -84,13 +81,13 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<Template>() {
             @Override
             public void onResponse(Call<Template> call, Response<Template> response) {
-                setupToast("Successfully Added Template");
+                showToast("Successfully Added Template");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Template> call, Throwable t) {
-                setupToast("Failed Add Template");
+                showToast("Failed Add Template");
             }
         });
     }
@@ -107,13 +104,13 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setupToast("Successfully Updated Template");
+                showToast("Successfully Updated Template");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("Failed to Update Template");
+                showToast("Failed to Update Template");
             }
         });
     }

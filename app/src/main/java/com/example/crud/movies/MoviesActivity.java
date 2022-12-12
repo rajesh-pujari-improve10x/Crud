@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
 
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviesActivity extends AppCompatActivity {
+public class MoviesActivity extends BaseActivity {
 
     private ArrayList<Movie> movies = new ArrayList<>();
     private RecyclerView moviesRv;
@@ -70,10 +71,6 @@ public class MoviesActivity extends AppCompatActivity {
         log("onResume Called");
     }
 
-    private void log(String movies) {
-        Log.i("MoviesActivity", movies);
-    }
-
     private void initViews() {
         moviesRv = findViewById(R.id.movies_rv);
         progressBar = findViewById(R.id.progress_bar);
@@ -82,10 +79,6 @@ public class MoviesActivity extends AppCompatActivity {
     private void setupApiMethods() {
         crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
-    }
-
-    private void setupToast(String movie) {
-        Toast.makeText(this, movie, Toast.LENGTH_SHORT).show();
     }
 
     private void showVisible() {
@@ -105,13 +98,13 @@ public class MoviesActivity extends AppCompatActivity {
                 hideVisible();
                 List<Movie> movies = response.body();
                 moviesAdapter.setData(movies);
-                setupToast("Successfully loaded data");
+                showToast("Successfully loaded data");
             }
 
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
                 hideVisible();
-                setupToast("Failed load data");
+                showToast("Failed load data");
             }
         });
     }
@@ -144,7 +137,7 @@ public class MoviesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("Failed delete Movie");
+                showToast("Failed delete Movie");
             }
         });
     }

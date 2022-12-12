@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.network.CrudApi;
 import com.example.crud.network.CrudService;
 
@@ -19,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditMessageActivity extends AppCompatActivity {
+public class AddEditMessageActivity extends BaseActivity {
 
     private Message message;
     private EditText nameTxt;
@@ -32,7 +33,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
-        Log.i("AddEditMessageActivity", "onCreate Called");
+        log("onCreate Called");
         initViews();
         setupApiMethods();
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
@@ -78,10 +79,6 @@ public class AddEditMessageActivity extends AppCompatActivity {
         crudService = crudApi.createCrudService();
     }
 
-    private void setupToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
     private void addMessage(String name, String phoneNumber, String message) {
         this.message = new Message(name, phoneNumber, message);
 
@@ -89,13 +86,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
-                setupToast("Successfully added message");
+                showToast("Successfully added message");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
-                setupToast("Failed to add message");
+                showToast("Failed to add message");
             }
         });
     }
@@ -113,13 +110,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setupToast("Successfully Updated Message");
+                showToast("Successfully Updated Message");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("Failed to Delete Message");
+                showToast("Failed to Delete Message");
             }
         });
     }
