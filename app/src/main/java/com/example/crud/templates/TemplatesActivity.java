@@ -1,18 +1,15 @@
 package com.example.crud.templates;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
@@ -56,7 +53,7 @@ public class TemplatesActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add) {
-            Intent intent = new Intent(this, AddEditTemplateActivity.class);
+            Intent intent = new Intent(this, AddTemplateActivity.class);
             startActivity(intent);
             return true;
         } else {
@@ -145,7 +142,7 @@ public class TemplatesActivity extends BaseActivity {
     }
 
     private void editMessage(Template template) {
-        Intent intent = new Intent(this, AddEditTemplateActivity.class);
+        Intent intent = new Intent(this, EditTemplateActivity.class);
         intent.putExtra(Constants.KEY_TEMPLATE, template);
         startActivity(intent);
     }
