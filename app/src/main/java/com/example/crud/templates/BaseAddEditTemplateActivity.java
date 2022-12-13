@@ -20,7 +20,6 @@ import retrofit2.Response;
 public class BaseAddEditTemplateActivity extends BaseActivity {
 
     protected EditText messageTxt;
-    protected CrudApi crudApi;
     protected CrudService crudService;
 
     @Override
@@ -43,7 +42,7 @@ public class BaseAddEditTemplateActivity extends BaseActivity {
     }
 
     private void setupApiMethods() {
-        crudApi = new CrudApi();
+        CrudApi crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
     }
 }

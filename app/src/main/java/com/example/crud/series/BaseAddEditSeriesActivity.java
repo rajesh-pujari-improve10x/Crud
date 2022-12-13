@@ -22,9 +22,7 @@ public class BaseAddEditSeriesActivity extends BaseActivity {
     protected EditText seriesIdTxt;
     protected EditText seriesNameTxt;
     protected EditText seriesImageUrlTxt;
-    protected CrudApi crudApi;
     protected CrudService crudService;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +46,7 @@ public class BaseAddEditSeriesActivity extends BaseActivity {
     }
 
     private void setupApiMethods() {
-        crudApi = new CrudApi();
+        CrudApi crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
     }
 }

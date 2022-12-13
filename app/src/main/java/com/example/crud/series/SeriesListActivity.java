@@ -30,7 +30,6 @@ public class SeriesListActivity extends BaseActivity {
     private RecyclerView seriesRv;
     private SeriesAdapter seriesAdapter;
     private ProgressBar progressBar;
-    private CrudApi crudApi;
     private CrudService crudService;
 
     @Override
@@ -74,7 +73,7 @@ public class SeriesListActivity extends BaseActivity {
     }
 
     private void setupApiMethods() {
-        crudApi = new CrudApi();
+        CrudApi crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
     }
 
@@ -96,7 +95,7 @@ public class SeriesListActivity extends BaseActivity {
             }
         });
     }
-
+    // showProgressBar
     private void showVisible() {
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -104,7 +103,7 @@ public class SeriesListActivity extends BaseActivity {
     private void hideVisible() {
         progressBar.setVisibility(View.GONE);
     }
-
+    // setupSeriesListRv
     private void setupSeriesRv() {
         seriesRv.setLayoutManager(new LinearLayoutManager(this));
         seriesAdapter = new SeriesAdapter();

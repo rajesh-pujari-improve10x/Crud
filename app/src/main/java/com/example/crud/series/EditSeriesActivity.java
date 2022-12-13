@@ -21,7 +21,7 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
         super.onCreate(savedInstanceState);
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
             getSupportActionBar().setTitle("Edit Series");
-            this.series = (Series) getIntent().getSerializableExtra(Constants.KEY_SERIES);
+            series = (Series) getIntent().getSerializableExtra(Constants.KEY_SERIES);
             showSeries();
         }
     }
@@ -46,7 +46,7 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
     }
 
     private void updateSeries(String id, String seriesId, String imageUrl, String title) {
-        series = new Series(seriesId, imageUrl, title);
+        Series series = new Series(seriesId, imageUrl, title);
 
         Call<Void> call = crudService.updateSeries(id, series);
         call.enqueue(new Callback<Void>() {

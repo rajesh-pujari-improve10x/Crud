@@ -30,7 +30,6 @@ public class MessagesActivity extends BaseActivity {
     private RecyclerView messagesRv;
     private MessagesAdapter messagesAdapter;
     private ProgressBar progressBar;
-    private CrudApi crudApi;
     private CrudService crudService;
 
     @Override
@@ -39,7 +38,7 @@ public class MessagesActivity extends BaseActivity {
         setContentView(R.layout.activity_messages_activity);
         log("onCreate Called");
         getSupportActionBar().setTitle("Messages");
-        messagesRv();
+        setupMessagesRv();
         setupApiMethods();
     }
 
@@ -76,7 +75,7 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void setupApiMethods() {
-        crudApi = new CrudApi();
+        CrudApi crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
     }
 
@@ -101,7 +100,7 @@ public class MessagesActivity extends BaseActivity {
         });
     }
 
-    private void messagesRv() {
+    private void setupMessagesRv() {
         progressBar = findViewById(R.id.progress_bar);
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
@@ -110,13 +109,11 @@ public class MessagesActivity extends BaseActivity {
         messagesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
-                showToast("Successfully Deleted Message");
                 deleteMessage(id);
             }
 
             @Override
             public void onEdit(Message message) {
-                showToast("Successfully Edited Message");
                 editMessage(message);
             }
         });
@@ -124,8 +121,6 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void deleteMessage(String id) {
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
         Call<Void> call = crudService.deleteMessage(id);
         call.enqueue(new Callback<Void>() {
             @Override

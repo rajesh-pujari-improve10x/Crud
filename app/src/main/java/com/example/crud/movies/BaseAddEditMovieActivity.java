@@ -83,7 +83,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-                showToast("Successfully loaded data");
+                showToast("Failed loaded data");
             }
         });
     }

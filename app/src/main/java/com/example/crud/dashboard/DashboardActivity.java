@@ -13,7 +13,7 @@ import com.example.crud.base.BaseActivity;
 import java.util.ArrayList;
 
 public class DashboardActivity extends BaseActivity {
-
+    //rename variable name (dashboardItems)
     private ArrayList<Dashboard> dashboards;
     private RecyclerView dashboardRv;
     private Dashboard dashboard;

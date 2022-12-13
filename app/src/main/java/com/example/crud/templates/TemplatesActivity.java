@@ -30,7 +30,6 @@ public class TemplatesActivity extends BaseActivity {
     private RecyclerView templatesRv;
     private TemplatesAdapter templatesAdapter;
     private ProgressBar progressBar;
-    private CrudApi crudApi;
     private CrudService crudService;
 
     @Override
@@ -74,7 +73,7 @@ public class TemplatesActivity extends BaseActivity {
     }
 
     private void setupApiMethods() {
-        crudApi = new CrudApi();
+        CrudApi crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
     }
 
@@ -112,13 +111,11 @@ public class TemplatesActivity extends BaseActivity {
         templatesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
-                showToast("Successfully Deleted");
                 deleteMessage(id);
             }
 
             @Override
             public void onEdit(Template template) {
-                showToast("Template Selected");
                 editMessage(template);
             }
         });

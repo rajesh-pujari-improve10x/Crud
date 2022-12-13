@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Movie implements Serializable {
+
     @SerializedName("_id")
     public String id;
     public String description;
@@ -16,6 +17,7 @@ public class Movie implements Serializable {
 
     public Movie() {
     }
+
     public Movie(String movieId, String movieName, String seriesId, String imageUrl, String description) {
         this.moviesId = movieId;
         this.title = movieName;

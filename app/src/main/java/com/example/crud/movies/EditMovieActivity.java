@@ -45,7 +45,7 @@ public class EditMovieActivity extends BaseAddEditMovieActivity{
     }
 
     private void updateMovie(String id, String movieId, String movieName, String seriesId, String imageUrl, String description) {
-        movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
+        Movie movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
 
         Call<Void> call = crudService.updateMovie(id, movie);
         call.enqueue(new Callback<Void>() {

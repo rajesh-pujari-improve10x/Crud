@@ -30,7 +30,6 @@ public class MoviesActivity extends BaseActivity {
     private RecyclerView moviesRv;
     private MoviesAdapter moviesAdapter;
     private ProgressBar progressBar;
-    private CrudApi crudApi;
     private CrudService crudService;
 
     @Override
@@ -74,7 +73,7 @@ public class MoviesActivity extends BaseActivity {
     }
 
     private void setupApiMethods() {
-        crudApi = new CrudApi();
+        CrudApi crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
     }
 

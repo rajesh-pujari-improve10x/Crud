@@ -21,7 +21,7 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
         super.onCreate(savedInstanceState);
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
             getSupportActionBar().setTitle("Edit Message");
-            this.message = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
+            message = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
             showData();
         }
     }
@@ -45,10 +45,10 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
         messageTxt.setText(this.message.messageText);
     }
 
-    private void updateMessage(String id, String name, String phoneNumber, String message) {
-        this.message = new Message(name, phoneNumber, message);
+    private void updateMessage(String id, String name, String phoneNumber, String messageTxt) {
+        Message message = new Message(name, phoneNumber, messageTxt);
 
-        Call<Void> call = crudService.updateMessage(id,this.message);
+        Call<Void> call = crudService.updateMessage(id, message);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

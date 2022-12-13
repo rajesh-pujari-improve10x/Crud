@@ -44,7 +44,7 @@ public class AddSeriesActivity extends BaseAddEditSeriesActivity{
 
             @Override
             public void onFailure(Call<Series> call, Throwable t) {
-                showToast("Successfully Added Series");
+                showToast("Failed Added Series");
             }
         });
     }

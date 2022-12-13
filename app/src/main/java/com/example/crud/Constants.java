@@ -11,5 +11,4 @@ public class Constants {
     public static final String TEMPLATES_END_POINT = "rajeshTemplates";
     public static final String SERIES_END_POINT = "rajeshSeries";
     public static final String MOVIES_END_POINT = "rajeshMovies";
-
 }
