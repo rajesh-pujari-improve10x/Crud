@@ -24,8 +24,9 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
         if (item.getItemId() == R.id.save) {
             String name = nameTxt.getText().toString();
             String phoneNumber = phoneNumberTxt.getText().toString();
-            String message = messageTxt.getText().toString();
-            addMessage(name, phoneNumber, message);
+            //Todo: change the variable name messageTxt to messageTextTxt all places
+            String messageText = messageTxt.getText().toString();
+            addMessage(name, phoneNumber, messageText);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -33,8 +34,8 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
     }
 
     private void addMessage(String name, String phoneNumber, String messageText) {
+        //Todo: change the obj name addMessage, updateMessage, should be change all this type of objects proper name convention
         Message message = new Message(name, phoneNumber, messageText);
-
         Call<Message> call = crudService.createMessage(message);
         call.enqueue(new Callback<Message>() {
             @Override

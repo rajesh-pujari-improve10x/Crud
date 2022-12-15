@@ -8,11 +8,11 @@ public class Movie implements Serializable {
 
     @SerializedName("_id")
     public String id;
+    @SerializedName("name")
+    public String title;
     public String description;
     public String seriesId;
     public String moviesId;
-    @SerializedName("name")
-    public String title;
     public String imageUrl;
 
     public Movie() {

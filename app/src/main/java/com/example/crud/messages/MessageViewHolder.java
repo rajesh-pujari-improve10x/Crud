@@ -20,6 +20,7 @@ public class MessageViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         nameTxt = itemView.findViewById(R.id.name_txt);
         mobileNumberTxt = itemView.findViewById(R.id.mobile_number_txt);
+        //Todo: change obj name and Id, messages package all places
         messageTxt = itemView.findViewById(R.id.message_txt);
         deleteBtn = itemView.findViewById(R.id.delete_btn);
     }

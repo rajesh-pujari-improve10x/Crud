@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
-import com.example.crud.network.CrudApi;
-import com.example.crud.network.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,31 +28,29 @@ public class MessagesActivity extends BaseActivity {
     private RecyclerView messagesRv;
     private MessagesAdapter messagesAdapter;
     private ProgressBar progressBar;
-    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_activity);
-        log("onCreate Called");
         getSupportActionBar().setTitle("Messages");
+        initViews();
+        setupMessagesAdapter();
         setupMessagesRv();
-        setupApiMethods();
-    }
-
-    private void showVisible() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    private void hideVisible() {
-        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        fetchData();
-        log("onResume Called");
+        fetchMessages();
+    }
+
+    private void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -74,36 +70,17 @@ public class MessagesActivity extends BaseActivity {
         }
     }
 
-    private void setupApiMethods() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
-    }
-
-    private void fetchData() {
-        log("fetching Messages Started Api");
-        showVisible();
-        Call<List<Message>> call = crudService.fetchMessages();
-        call.enqueue(new Callback<List<Message>>() {
-            @Override
-            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                log("Successfully received From Api");
-                hideVisible();
-                List<Message> messages = response.body();
-                messagesAdapter.setData(messages);
-            }
-
-            @Override
-            public void onFailure(Call<List<Message>> call, Throwable t) {
-                hideVisible();
-                showToast("Failed to load Messages");
-            }
-        });
+    private void initViews() {
+        progressBar = findViewById(R.id.progress_bar);
+        messagesRv = findViewById(R.id.messages_rv);
     }
 
     private void setupMessagesRv() {
-        progressBar = findViewById(R.id.progress_bar);
-        messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
+        messagesRv.setAdapter(messagesAdapter);
+    }
+
+    private void setupMessagesAdapter() {
         messagesAdapter = new MessagesAdapter();
         messagesAdapter.setData(messages);
         messagesAdapter.setOnItemActionListener(new OnItemActionListener() {
@@ -117,16 +94,37 @@ public class MessagesActivity extends BaseActivity {
                 editMessage(message);
             }
         });
-        messagesRv.setAdapter(messagesAdapter);
+    }
+
+    private void fetchMessages() {
+        log("fetching Messages Started Api");
+        showProgressBar();
+        Call<List<Message>> call = crudService.fetchMessages();
+        call.enqueue(new Callback<List<Message>>() {
+            @Override
+            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                log("Successfully received From Api");
+                hideProgressBar();
+                List<Message> messages = response.body();
+                messagesAdapter.setData(messages);
+            }
+
+            @Override
+            public void onFailure(Call<List<Message>> call, Throwable t) {
+                hideProgressBar();
+                showToast("Failed to load Messages");
+            }
+        });
     }
 
     private void deleteMessage(String id) {
+        //Todo: give the progressBar methods in all delete methods
         Call<Void> call = crudService.deleteMessage(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 showToast("Successfully deleted message");
-                fetchData();
+                fetchMessages();
             }
 
             @Override

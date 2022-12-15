@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
-import com.example.crud.network.CrudApi;
-import com.example.crud.network.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,16 +28,14 @@ public class TemplatesActivity extends BaseActivity {
     private RecyclerView templatesRv;
     private TemplatesAdapter templatesAdapter;
     private ProgressBar progressBar;
-    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates);
-        log("onCreate Called");
         getSupportActionBar().setTitle("Templates");
         initViews();
-        setupApiMethods();
+        setupTemplatesAdapter();
         setupTemplatesRv();
     }
 
@@ -64,7 +60,6 @@ public class TemplatesActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         fetchData();
-        log("onResume Called");
     }
 
     private void initViews() {
@@ -72,40 +67,20 @@ public class TemplatesActivity extends BaseActivity {
         templatesRv = findViewById(R.id.templates_rv);
     }
 
-    private void setupApiMethods() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
-    }
-
-    private void showVisible() {
+    private void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    private void hideVisible() {
+    private void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
-    }
-
-    private void fetchData() {
-        showVisible();
-        Call<List<Template>> call = crudService.fetchTemplates();
-        call.enqueue(new Callback<List<Template>>() {
-            @Override
-            public void onResponse(Call<List<Template>> call, Response<List<Template>> response) {
-                hideVisible();
-                List<Template> templates = response.body();
-                templatesAdapter.setData(templates);
-            }
-
-            @Override
-            public void onFailure(Call<List<Template>> call, Throwable t) {
-                showToast("Failed to load data");
-                hideVisible();
-            }
-        });
     }
 
     private void setupTemplatesRv() {
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
+        templatesRv.setAdapter(templatesAdapter);
+    }
+
+    private void setupTemplatesAdapter() {
         templatesAdapter = new TemplatesAdapter();
         templatesAdapter.setData(templates);
         templatesAdapter.setOnItemActionListener(new OnItemActionListener() {
@@ -119,7 +94,25 @@ public class TemplatesActivity extends BaseActivity {
                 editMessage(template);
             }
         });
-        templatesRv.setAdapter(templatesAdapter);
+    }
+
+    private void fetchData() {
+        showProgressBar();
+        Call<List<Template>> call = crudService.fetchTemplates();
+        call.enqueue(new Callback<List<Template>>() {
+            @Override
+            public void onResponse(Call<List<Template>> call, Response<List<Template>> response) {
+                hideProgressBar();
+                List<Template> templates = response.body();
+                templatesAdapter.setData(templates);
+            }
+
+            @Override
+            public void onFailure(Call<List<Template>> call, Throwable t) {
+                hideProgressBar();
+                showToast("Failed to load data");
+            }
+        });
     }
 
     private void deleteMessage(String id) {

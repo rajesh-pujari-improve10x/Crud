@@ -14,16 +14,12 @@ public class BaseAddEditMessageActivity extends BaseActivity {
     protected EditText nameTxt;
     protected EditText phoneNumberTxt;
     protected EditText messageTxt;
-    protected CrudApi crudApi;
-    protected CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
-        log("onCreate Called");
         initViews();
-        setupApiService();
     }
 
     @Override
@@ -35,11 +31,7 @@ public class BaseAddEditMessageActivity extends BaseActivity {
     private void initViews() {
         nameTxt = findViewById(R.id.name_txt);
         phoneNumberTxt = findViewById(R.id.phone_number_txt);
+        //Todo: change the Id name
         messageTxt = findViewById(R.id.message_txt);
-    }
-
-    private void setupApiService() {
-        crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
     }
 }

@@ -10,7 +10,7 @@ import com.example.crud.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+    //Todo: change the all series files name
 public class AddSeriesActivity extends BaseAddEditSeriesActivity{
 
     @Override
@@ -34,7 +34,6 @@ public class AddSeriesActivity extends BaseAddEditSeriesActivity{
 
     private void addSeries(String seriesId, String imageUrl, String title) {
         Series series = new Series(seriesId, imageUrl, title);
-
         Call<Series> call = crudService.createSeriesList(series);
         call.enqueue(new Callback<Series>() {
             @Override

@@ -19,8 +19,8 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Edit Message");
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
-            getSupportActionBar().setTitle("Edit Message");
             message = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
             showData();
         }
@@ -31,8 +31,8 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
         if (item.getItemId() == R.id.save) {
             String name = nameTxt.getText().toString();
             String phoneNumber = phoneNumberTxt.getText().toString();
-            String message = messageTxt.getText().toString();
-            updateMessage(this.message.id, name, phoneNumber, message);
+            String messageText = messageTxt.getText().toString();
+            updateMessage(message.id, name, phoneNumber, messageText);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -40,14 +40,13 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     }
 
     private void showData() {
-        nameTxt.setText(this.message.name);
-        phoneNumberTxt.setText(this.message.phoneNumber);
-        messageTxt.setText(this.message.messageText);
+        nameTxt.setText(message.name);
+        phoneNumberTxt.setText(message.phoneNumber);
+        messageTxt.setText(message.messageText);
     }
 
-    private void updateMessage(String id, String name, String phoneNumber, String messageTxt) {
-        Message message = new Message(name, phoneNumber, messageTxt);
-
+    private void updateMessage(String id, String name, String phoneNumber, String messageText) {
+        Message message = new Message(name, phoneNumber, messageText);
         Call<Void> call = crudService.updateMessage(id, message);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -58,7 +57,7 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to Delete Message");
+                showToast("Failed to Update Message");
             }
         });
     }

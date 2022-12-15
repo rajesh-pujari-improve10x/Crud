@@ -41,7 +41,7 @@ public interface CrudService {
 
     @PUT(Constants.TEMPLATES_END_POINT + "/{id}")
     Call<Void> updateTemplate(@Path("id") String id, @Body Template template);
-
+    //Todo: change the all series methods name fetchSeriesItems, createSeriesItem, deleteSeriesItem, updateSeriesItem
     @GET(Constants.SERIES_END_POINT)
     Call<List<Series>> fetchSeries();
 

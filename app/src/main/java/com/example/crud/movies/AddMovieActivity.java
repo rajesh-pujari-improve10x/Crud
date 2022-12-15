@@ -40,8 +40,8 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
 
 
     private void addMovie(String movieId, String movieName, String seriesId, String imageUrl, String description) {
+       //Todo: already given the comment
         Movie movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
-
         Call<Movie> call = crudService.createMovie(movie);
         call.enqueue(new Callback<Movie>() {
             @Override

@@ -19,8 +19,8 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Edit Template");
         if(getIntent().hasExtra(Constants.KEY_TEMPLATE)) {
-            getSupportActionBar().setTitle("Edit Template");
             template = (Template) getIntent().getSerializableExtra(Constants.KEY_TEMPLATE);
             showData();
         }
@@ -44,7 +44,6 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
     private void updateMessage(String id, String message) {
         Template template = new Template();
         template.messageText = message;
-
         Call<Void> call = crudService.updateTemplate(id, template);
         call.enqueue(new Callback<Void>() {
             @Override

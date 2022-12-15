@@ -1,18 +1,12 @@
 package com.example.crud.movies;
 
-import androidx.annotation.NonNull;
-
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
-import com.example.crud.network.CrudApi;
-import com.example.crud.network.CrudService;
 import com.example.crud.series.Series;
 
 import java.util.ArrayList;
@@ -29,18 +23,15 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     protected Spinner seriesSp;
     protected EditText imageUrlTxt;
     protected EditText descriptionTxt;
-    protected CrudService crudService;
     protected CustomSeriesAdapter customSeriesAdapter;
-    private ArrayList<Series> seriesList = new ArrayList<>();
-    protected Movie movie;
+    private ArrayList<Series> seriesItems = new ArrayList<>();
+    private Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
-        log("onCreate Called");
         initViews();
-        setupApiMethods();
         fetchSeriesList();
         setupSeriesListSp();
     }
@@ -58,24 +49,19 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         imageUrlTxt = findViewById(R.id.image_url_txt);
         descriptionTxt = findViewById(R.id.description_txt);
     }
-
+    //Todo: change the method name setupSeriesItemsSp
     private void setupSeriesListSp() {
-        customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesList);
+        customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
         seriesSp.setAdapter(customSeriesAdapter);
     }
-
-    private void setupApiMethods() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
-    }
-
+    //Todo: change the method name fetchSeriesItems
     private void fetchSeriesList() {
         Call<List<Series>> call = crudService.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-                List<Series> seriesList = response.body();
-                customSeriesAdapter.addAll(seriesList);
+                List<Series> seriesItems = response.body();
+                customSeriesAdapter.addAll(seriesItems);
                 if (movie != null) {
                     showData();
                 }

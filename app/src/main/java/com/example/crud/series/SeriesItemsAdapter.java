@@ -12,8 +12,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
-
+public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
+    //Todo: already given the comment
     private List<Series> seriesList;
     private OnItemActionListener onItemActionListener;
 

@@ -1,4 +1,4 @@
-package com.example.crud.dashboard;
+package com.example.crud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.example.crud.R;
+import com.example.crud.dashboard.DashboardItemsActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            Intent intent = new Intent(this, DashboardActivity.class);
+            Intent intent = new Intent(this, DashboardItemsActivity.class);
             startActivity(intent);
             finish();
         }, 3000);

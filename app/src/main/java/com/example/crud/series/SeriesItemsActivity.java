@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
-import com.example.crud.network.CrudApi;
-import com.example.crud.network.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,23 +22,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SeriesListActivity extends BaseActivity {
-
+public class SeriesItemsActivity extends BaseActivity {
+    //Todo: change the variable name in all this related places
     private ArrayList<Series> seriesList = new ArrayList<>();
-    private RecyclerView seriesRv;
-    private SeriesAdapter seriesAdapter;
+    private RecyclerView seriesItemsRv;
+    private SeriesItemsAdapter seriesItemsAdapter;
     private ProgressBar progressBar;
-    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series);
-        log("onCreate Called");
         getSupportActionBar().setTitle("Series");
         initView();
-        setupApiMethods();
-        setupSeriesRv();
+        setupSeriesItemsAdapter();
+        setupSeriesItemsRv();
     }
 
     @Override
@@ -64,51 +60,30 @@ public class SeriesListActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         fetchData();
-        log("onResume Called");
     }
 
     private void initView() {
-        seriesRv = findViewById(R.id.series_rv);
+        seriesItemsRv = findViewById(R.id.series_rv);
         progressBar = findViewById(R.id.progress_bar);
     }
 
-    private void setupApiMethods() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
-    }
-
-    private void fetchData() {
-        showVisible();
-        Call<List<Series>> call = crudService.fetchSeries();
-        call.enqueue(new Callback<List<Series>>() {
-            @Override
-            public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-                List<Series> series = response.body();
-                seriesAdapter.setData(series);
-                hideVisible();
-            }
-
-            @Override
-            public void onFailure(Call<List<Series>> call, Throwable t) {
-                showToast("Failed to load Data");
-                hideVisible();
-            }
-        });
-    }
-    // showProgressBar
-    private void showVisible() {
+    private void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    private void hideVisible() {
+    private void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
     }
-    // setupSeriesListRv
-    private void setupSeriesRv() {
-        seriesRv.setLayoutManager(new LinearLayoutManager(this));
-        seriesAdapter = new SeriesAdapter();
-        seriesAdapter.setData(seriesList);
-        seriesAdapter.setOnItemActionListener(new OnItemActionListener() {
+
+    private void setupSeriesItemsRv() {
+        seriesItemsRv.setLayoutManager(new LinearLayoutManager(this));
+        seriesItemsRv.setAdapter(seriesItemsAdapter);
+    }
+
+    private void setupSeriesItemsAdapter() {
+        seriesItemsAdapter = new SeriesItemsAdapter();
+        seriesItemsAdapter.setData(seriesList);
+        seriesItemsAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
                 deleteSeries(id);
@@ -120,7 +95,25 @@ public class SeriesListActivity extends BaseActivity {
                 showToast("Successfully Edit Series");
             }
         });
-        seriesRv.setAdapter(seriesAdapter);
+    }
+    //Todo: change the fetch, create, delete and update methods name in the SeriesItemsActivity and AddSeriesItemActivity
+    private void fetchData() {
+        showProgressBar();
+        Call<List<Series>> call = crudService.fetchSeries();
+        call.enqueue(new Callback<List<Series>>() {
+            @Override
+            public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
+                hideProgressBar();
+                List<Series> series = response.body();
+                seriesItemsAdapter.setData(series);
+            }
+
+            @Override
+            public void onFailure(Call<List<Series>> call, Throwable t) {
+                hideProgressBar();
+                showToast("Failed to load Data");
+            }
+        });
     }
 
     private void deleteSeries(String id) {

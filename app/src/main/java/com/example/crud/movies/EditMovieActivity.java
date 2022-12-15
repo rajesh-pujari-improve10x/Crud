@@ -18,11 +18,13 @@ import retrofit2.Response;
 
 public class EditMovieActivity extends BaseAddEditMovieActivity{
 
+    private Movie movie;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Edit Movie");
         if (getIntent().hasExtra(Constants.KEY_MOVIE)) {
-            getSupportActionBar().setTitle("Edit Movie");
             movie = (Movie) getIntent().getSerializableExtra(Constants.KEY_MOVIE);
             showData();
         }
@@ -46,7 +48,6 @@ public class EditMovieActivity extends BaseAddEditMovieActivity{
 
     private void updateMovie(String id, String movieId, String movieName, String seriesId, String imageUrl, String description) {
         Movie movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
-
         Call<Void> call = crudService.updateMovie(id, movie);
         call.enqueue(new Callback<Void>() {
             @Override

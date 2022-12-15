@@ -20,15 +20,12 @@ import retrofit2.Response;
 public class BaseAddEditTemplateActivity extends BaseActivity {
 
     protected EditText messageTxt;
-    protected CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_template);
-        log("onCreate Called");
         initViews();
-        setupApiMethods();
     }
 
     @Override
@@ -39,10 +36,5 @@ public class BaseAddEditTemplateActivity extends BaseActivity {
 
     private void initViews() {
         messageTxt = findViewById(R.id.message_txt);
-    }
-
-    private void setupApiMethods() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
     }
 }

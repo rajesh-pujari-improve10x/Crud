@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingLeft="12dp"
     android:paddingRight="12dp"
-    tools:context=".dashboard.DashboardActivity">
+    tools:context=".dashboard.DashboardItemsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dashboard_rv"
