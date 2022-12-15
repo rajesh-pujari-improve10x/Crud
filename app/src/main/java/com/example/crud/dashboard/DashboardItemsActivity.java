@@ -43,7 +43,7 @@ public class DashboardItemsActivity extends BaseActivity {
     }
 
     private void initViews() {
-        dashboardItemsRv = findViewById(R.id.dashboard_rv);
+        dashboardItemsRv = findViewById(R.id.dashboard_items_rv);
     }
 
     private void setupDashboardItemsRv() {
