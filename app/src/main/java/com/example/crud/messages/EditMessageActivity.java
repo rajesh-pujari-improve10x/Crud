@@ -31,7 +31,7 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
         if (item.getItemId() == R.id.save) {
             String name = nameTxt.getText().toString();
             String phoneNumber = phoneNumberTxt.getText().toString();
-            String messageText = messageTxt.getText().toString();
+            String messageText = messageTextTxt.getText().toString();
             updateMessage(message.id, name, phoneNumber, messageText);
             return true;
         } else {
@@ -42,7 +42,7 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     private void showData() {
         nameTxt.setText(message.name);
         phoneNumberTxt.setText(message.phoneNumber);
-        messageTxt.setText(message.messageText);
+        messageTextTxt.setText(message.messageText);
     }
 
     private void updateMessage(String id, String name, String phoneNumber, String messageText) {

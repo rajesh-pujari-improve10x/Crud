@@ -25,7 +25,7 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
             String name = nameTxt.getText().toString();
             String phoneNumber = phoneNumberTxt.getText().toString();
             //Todo: change the variable name messageTxt to messageTextTxt all places
-            String messageText = messageTxt.getText().toString();
+            String messageText = messageTextTxt.getText().toString();
             addMessage(name, phoneNumber, messageText);
             return true;
         } else {
