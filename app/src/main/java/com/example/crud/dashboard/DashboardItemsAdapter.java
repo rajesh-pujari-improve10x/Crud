@@ -19,9 +19,9 @@ import java.util.ArrayList;
 
 public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardItemViewHolder> {
 
-    private ArrayList<Dashboard> dashboardItems;
+    private ArrayList<DashboardItem> dashboardItems;
 
-    void setData(ArrayList<Dashboard> dashboardItems) {
+    void setData(ArrayList<DashboardItem> dashboardItems) {
         this.dashboardItems = dashboardItems;
         notifyDataSetChanged();
     }
@@ -36,9 +36,9 @@ public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardItemVie
 
     @Override
     public void onBindViewHolder(@NonNull DashboardItemViewHolder holder, int position) {
-        Dashboard dashboard = dashboardItems.get(position);
-        Picasso.get().load(dashboard.imageUrl).into(holder.imageImg);
-        holder.titleTxt.setText(dashboard.title);
+        DashboardItem dashboardItem = dashboardItems.get(position);
+        Picasso.get().load(dashboardItem.imageUrl).into(holder.imageImg);
+        holder.titleTxt.setText(dashboardItem.title);
         holder.itemView.setOnClickListener(view -> {
             if (holder.titleTxt.getText().toString().equalsIgnoreCase("Messages")) {
                 Intent intent = new Intent(holder.itemView.getContext(), MessagesActivity.class);
