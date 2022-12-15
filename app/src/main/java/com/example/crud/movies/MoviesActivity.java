@@ -117,15 +117,18 @@ public class MoviesActivity extends BaseActivity {
     }
 
     private void deleteMovie(String id) {
+        showProgressBar();
         Call<Void> call = crudService.deleteMovie(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                hideProgressBar();
                 fetchMovies();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                hideProgressBar();
                 showToast("Failed delete Movie");
             }
         });
