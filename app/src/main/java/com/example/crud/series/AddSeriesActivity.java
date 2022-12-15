@@ -25,15 +25,15 @@ public class AddSeriesActivity extends BaseAddEditSeriesActivity{
             String seriesId = seriesIdTxt.getText().toString();
             String seriesName = seriesNameTxt.getText().toString();
             String seriesImageUrl = seriesImageUrlTxt.getText().toString();
-            addSeries(seriesId, seriesImageUrl, seriesName);
+            addSeries(seriesId, seriesName, seriesImageUrl);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void addSeries(String seriesId, String imageUrl, String title) {
-        Series series = new Series(seriesId, imageUrl, title);
+    private void addSeries(String seriesId, String title, String imageUrl) {
+        Series series = new Series(seriesId, title, imageUrl);
         Call<Series> call = crudService.createSeriesList(series);
         call.enqueue(new Callback<Series>() {
             @Override

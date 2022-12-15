@@ -32,7 +32,7 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
             String seriesId = seriesIdTxt.getText().toString();
             String seriesName = seriesNameTxt.getText().toString();
             String seriesImageUrl = seriesImageUrlTxt.getText().toString();
-            updateSeries(this.series.id, seriesId, seriesImageUrl, seriesName);
+            updateSeries(series.id, seriesId, seriesName, seriesImageUrl);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -45,8 +45,8 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
         seriesImageUrlTxt.setText(series.imageUrl);
     }
 
-    private void updateSeries(String id, String seriesId, String imageUrl, String title) {
-        Series series = new Series(seriesId, imageUrl, title);
+    private void updateSeries(String id, String seriesId, String title, String imageUrl) {
+        Series series = new Series(seriesId, title, imageUrl);
         Call<Void> call = crudService.updateSeries(id, series);
         call.enqueue(new Callback<Void>() {
             @Override

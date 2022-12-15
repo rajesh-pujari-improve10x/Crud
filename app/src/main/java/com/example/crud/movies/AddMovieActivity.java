@@ -31,7 +31,7 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
             String seriesId = series.seriesId;
             String imageUrl = imageUrlTxt.getText().toString();
             String description = descriptionTxt.getText().toString();
-            addMovie(movieId, movieName, seriesId, imageUrl, description);
+            addMovie(movieId, seriesId, movieName, imageUrl, description);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -39,9 +39,9 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
     }
 
 
-    private void addMovie(String movieId, String movieName, String seriesId, String imageUrl, String description) {
+    private void addMovie(String movieId, String seriesId, String movieName, String imageUrl, String description) {
        //Todo: already given the comment
-        Movie movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
+        Movie movie = new Movie(movieId, seriesId, movieName, imageUrl, description);
         Call<Movie> call = crudService.createMovie(movie);
         call.enqueue(new Callback<Movie>() {
             @Override
