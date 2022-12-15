@@ -12,13 +12,13 @@ import com.example.crud.R;
 
 public class MovieViewHolder extends RecyclerView.ViewHolder {
     //Todo: already given the comment in dashboardViewHolder
-    ImageView imageImg;
+    ImageView movieItemImg;
     TextView titleTxt;
     ImageButton deleteBtn;
 
     public MovieViewHolder(@NonNull View itemView) {
         super(itemView);
-        imageImg = itemView.findViewById(R.id.image_img);
+        movieItemImg = itemView.findViewById(R.id.movie_item_img);
         titleTxt = itemView.findViewById(R.id.title_txt);
         deleteBtn = itemView.findViewById(R.id.delete_btn);
     }
