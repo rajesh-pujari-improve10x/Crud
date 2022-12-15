@@ -31,13 +31,13 @@ public class DashboardItemsActivity extends BaseActivity {
     private void setupData() {
         dashboardItems = new ArrayList<>();
         //Todo: implement Dashboard Class Name
-        this.dashboardItem = new DashboardItem("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Messages");
+        this.dashboardItem = new DashboardItem("Messages", "https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png");
         dashboardItems.add(this.dashboardItem);
-        this.dashboardItem = new DashboardItem("https://static.thenounproject.com/png/1021190-200.png", "Templates");
+        this.dashboardItem = new DashboardItem("Templates", "https://static.thenounproject.com/png/1021190-200.png");
         dashboardItems.add(this.dashboardItem);
-        this.dashboardItem = new DashboardItem("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Series");
+        this.dashboardItem = new DashboardItem("Series", "https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png");
         dashboardItems.add(this.dashboardItem);
-        this.dashboardItem = new DashboardItem("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Movies");
+        this.dashboardItem = new DashboardItem("Movies", "https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png");
         dashboardItems.add(this.dashboardItem);
     }
 

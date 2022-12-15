@@ -39,15 +39,15 @@ public class EditMovieActivity extends BaseAddEditMovieActivity{
             String seriesId = series.seriesId;
             String imageUrl = imageUrlTxt.getText().toString();
             String description = descriptionTxt.getText().toString();
-            updateMovie(movie.id, movieId, movieName, seriesId, imageUrl, description);
+            updateMovie(movie.id, movieId, seriesId, movieName, imageUrl, description);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void updateMovie(String id, String movieId, String movieName, String seriesId, String imageUrl, String description) {
-        Movie movie = new Movie(movieId, movieName, seriesId, imageUrl, description);
+    private void updateMovie(String id, String movieId, String seriesId, String movieName, String imageUrl, String description) {
+        Movie movie = new Movie(movieId, seriesId, movieName, imageUrl, description);
         Call<Void> call = crudService.updateMovie(id, movie);
         call.enqueue(new Callback<Void>() {
             @Override

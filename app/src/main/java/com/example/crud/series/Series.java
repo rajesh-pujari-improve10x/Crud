@@ -16,9 +16,9 @@ public class Series implements Serializable {
     public Series() {
     }
 
-    public Series(String seriesId, String imageUrl, String title) {
+    public Series(String seriesId, String title, String imageUrl) {
         this.seriesId = seriesId;
-        this.imageUrl = imageUrl;
         this.title = title;
+        this.imageUrl = imageUrl;
     }
 }

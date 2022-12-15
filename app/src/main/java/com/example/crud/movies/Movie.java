@@ -18,10 +18,10 @@ public class Movie implements Serializable {
     public Movie() {
     }
 
-    public Movie(String movieId, String movieName, String seriesId, String imageUrl, String description) {
+    public Movie(String movieId, String seriesId, String movieName, String imageUrl, String description) {
         this.moviesId = movieId;
-        this.title = movieName;
         this.seriesId = seriesId;
+        this.title = movieName;
         this.imageUrl = imageUrl;
         this.description = description;
     }
