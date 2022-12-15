@@ -34,7 +34,6 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
     }
 
     private void addMessage(String name, String phoneNumber, String messageText) {
-        //Todo: change the obj name addMessage, updateMessage, should be change all this type of objects proper name convention
         Message message = new Message(name, phoneNumber, messageText);
         Call<Message> call = crudService.createMessage(message);
         call.enqueue(new Callback<Message>() {
