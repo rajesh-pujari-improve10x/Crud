@@ -1,14 +1,14 @@
 package com.example.crud.dashboard;
     //Todo : change the class name in all places DashboardItem
-public class Dashboard {
+public class DashboardItem {
 
     public String imageUrl;
     public String title;
 
-    public Dashboard() {
+    public DashboardItem() {
     }
     //Todo : change the parameters order
-    public Dashboard(String imageUrl, String title) {
+    public DashboardItem(String imageUrl, String title) {
         this.imageUrl = imageUrl;
         this.title = title;
     }

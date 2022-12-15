@@ -12,11 +12,11 @@ import java.util.ArrayList;
 
 public class DashboardItemsActivity extends BaseActivity {
 
-    private ArrayList<Dashboard> dashboardItems;
+    private ArrayList<DashboardItem> dashboardItems;
     private RecyclerView dashboardItemsRv;
     private DashboardItemsAdapter dashboardItemsAdapter;
     //Todo : change the variable name dashboardItem
-    private Dashboard dashboard;
+    private DashboardItem dashboardItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +31,14 @@ public class DashboardItemsActivity extends BaseActivity {
     private void setupData() {
         dashboardItems = new ArrayList<>();
         //Todo: implement Dashboard Class Name
-        this.dashboard = new Dashboard("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Messages");
-        dashboardItems.add(this.dashboard);
-        this.dashboard = new Dashboard("https://static.thenounproject.com/png/1021190-200.png", "Templates");
-        dashboardItems.add(this.dashboard);
-        this.dashboard = new Dashboard("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Series");
-        dashboardItems.add(this.dashboard);
-        this.dashboard = new Dashboard("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Movies");
-        dashboardItems.add(this.dashboard);
+        this.dashboardItem = new DashboardItem("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Messages");
+        dashboardItems.add(this.dashboardItem);
+        this.dashboardItem = new DashboardItem("https://static.thenounproject.com/png/1021190-200.png", "Templates");
+        dashboardItems.add(this.dashboardItem);
+        this.dashboardItem = new DashboardItem("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Series");
+        dashboardItems.add(this.dashboardItem);
+        this.dashboardItem = new DashboardItem("https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png", "Movies");
+        dashboardItems.add(this.dashboardItem);
     }
 
     private void setupDashboardItemsRv() {
