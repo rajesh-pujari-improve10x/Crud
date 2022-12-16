@@ -24,7 +24,7 @@ public class CustomSeriesAdapter extends ArrayAdapter<SeriesItem> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.series_spinner_item, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.series_item_spinner, parent, false);
         SeriesItem series = getItem(position);
         TextView titleTxt = view.findViewById(R.id.title_txt);
         titleTxt.setText(series.seriesId + " - " + series.title);
@@ -33,7 +33,7 @@ public class CustomSeriesAdapter extends ArrayAdapter<SeriesItem> {
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.series_spinner_item, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.series_item_spinner, parent, false);
         SeriesItem seriesItem = getItem(position);
         TextView titleTxt = view.findViewById(R.id.title_txt);
         titleTxt.setText(seriesItem.seriesId + " - " + seriesItem.title);

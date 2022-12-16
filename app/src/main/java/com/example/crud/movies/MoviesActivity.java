@@ -41,7 +41,7 @@ public class MoviesActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.movie_menu, menu);
+        getMenuInflater().inflate(R.menu.movies_menu, menu);
         return true;
     }
 
