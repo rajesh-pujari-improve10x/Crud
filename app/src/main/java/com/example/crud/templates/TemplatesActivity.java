@@ -59,7 +59,7 @@ public class TemplatesActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        fetchData();
+        fetchTemplates();
     }
 
     private void initViews() {
@@ -86,17 +86,17 @@ public class TemplatesActivity extends BaseActivity {
         templatesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
-                deleteMessage(id);
+                deleteTemplate(id);
             }
 
             @Override
             public void onEdit(Template template) {
-                editMessage(template);
+                editTemplate(template);
             }
         });
     }
 
-    private void fetchData() {
+    private void fetchTemplates() {
         showProgressBar();
         Call<List<Template>> call = crudService.fetchTemplates();
         call.enqueue(new Callback<List<Template>>() {
@@ -115,7 +115,7 @@ public class TemplatesActivity extends BaseActivity {
         });
     }
 
-    private void deleteMessage(String id) {
+    private void deleteTemplate(String id) {
         showProgressBar();
         Call<Void> call = crudService.deleteTemplate(id);
         call.enqueue(new Callback<Void>() {
@@ -123,7 +123,7 @@ public class TemplatesActivity extends BaseActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 hideProgressBar();
                 showToast("Successfully Deleted Template");
-                fetchData();
+                fetchTemplates();
             }
 
             @Override
@@ -134,7 +134,7 @@ public class TemplatesActivity extends BaseActivity {
         });
     }
 
-    private void editMessage(Template template) {
+    private void editTemplate(Template template) {
         Intent intent = new Intent(this, EditTemplateActivity.class);
         intent.putExtra(Constants.KEY_TEMPLATE, template);
         startActivity(intent);
