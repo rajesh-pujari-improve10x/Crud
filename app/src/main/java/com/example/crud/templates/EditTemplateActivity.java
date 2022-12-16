@@ -30,7 +30,7 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save) {
             String message = messageTxt.getText().toString();
-            updateMessage(template.id, message);
+            updateTemplate(template.id, message);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -41,7 +41,7 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
         messageTxt.setText(template.messageText);
     }
 
-    private void updateMessage(String id, String message) {
+    private void updateTemplate(String id, String message) {
         Template updatedTemplate = new Template(message);
         Call<Void> call = crudService.updateTemplate(id, updatedTemplate);
         call.enqueue(new Callback<Void>() {
