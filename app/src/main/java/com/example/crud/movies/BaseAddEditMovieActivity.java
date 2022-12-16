@@ -30,7 +30,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_movie);
+        setContentView(R.layout.activity_base_add_edit_movie);
         initViews();
         fetchSeriesItems();
         setupSeriesItemsSp();
@@ -38,7 +38,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_edit_movie_menu, menu);
+        getMenuInflater().inflate(R.menu.base_add_edit_movie_menu, menu);
         return true;
     }
 

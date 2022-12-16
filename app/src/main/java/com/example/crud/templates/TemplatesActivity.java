@@ -41,7 +41,7 @@ public class TemplatesActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.template_menu, menu);
+        getMenuInflater().inflate(R.menu.templates_menu, menu);
         return true;
     }
 

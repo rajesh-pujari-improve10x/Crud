@@ -16,13 +16,13 @@ public class BaseAddEditMessageActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_message);
+        setContentView(R.layout.activity_base_add_edit_message);
         initViews();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_edit_message_menu, menu);
+        getMenuInflater().inflate(R.menu.base_add_edit_message_menu, menu);
         return true;
     }
 
