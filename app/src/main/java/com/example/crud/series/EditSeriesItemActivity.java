@@ -22,7 +22,7 @@ public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
             getSupportActionBar().setTitle("Edit Series");
             seriesItem = (SeriesItem) getIntent().getSerializableExtra(Constants.KEY_SERIES);
-            showSeries();
+            showData();
         }
     }
 
@@ -32,20 +32,20 @@ public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
             String seriesId = seriesIdTxt.getText().toString();
             String seriesName = seriesNameTxt.getText().toString();
             String seriesImageUrl = seriesImageUrlTxt.getText().toString();
-            updateSeries(seriesItem.id, seriesId, seriesName, seriesImageUrl);
+            updateSeriesItem(seriesItem.id, seriesId, seriesName, seriesImageUrl);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void showSeries() {
+    private void showData() {
         seriesIdTxt.setText(seriesItem.seriesId);
         seriesNameTxt.setText(seriesItem.title);
         seriesImageUrlTxt.setText(seriesItem.imageUrl);
     }
 
-    private void updateSeries(String id, String seriesId, String title, String imageUrl) {
+    private void updateSeriesItem(String id, String seriesId, String title, String imageUrl) {
         SeriesItem updatedSeriesItem = new SeriesItem(seriesId, title, imageUrl);
         Call<Void> call = crudService.updateSeriesItem(id, updatedSeriesItem);
         call.enqueue(new Callback<Void>() {

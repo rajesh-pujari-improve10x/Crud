@@ -59,7 +59,7 @@ public class SeriesItemsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        fetchData();
+        fetchSeriesItems();
     }
 
     private void initView() {
@@ -86,7 +86,7 @@ public class SeriesItemsActivity extends BaseActivity {
         seriesItemsAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
-                deleteSeries(id);
+                deleteSeriesItem(id);
             }
 
             @Override
@@ -96,8 +96,8 @@ public class SeriesItemsActivity extends BaseActivity {
             }
         });
     }
-    //Todo: change the fetch, create, delete and update methods name in the SeriesItemsActivity and AddSeriesItemActivity
-    private void fetchData() {
+
+    private void fetchSeriesItems() {
         showProgressBar();
         Call<List<SeriesItem>> call = crudService.fetchSeriesItems();
         call.enqueue(new Callback<List<SeriesItem>>() {
@@ -116,14 +116,14 @@ public class SeriesItemsActivity extends BaseActivity {
         });
     }
 
-    private void deleteSeries(String id) {
+    private void deleteSeriesItem(String id) {
         showProgressBar();
         Call<Void> call = crudService.deleteSeriesItem(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 hideProgressBar();
-                fetchData();
+                fetchSeriesItems();
             }
 
             @Override
