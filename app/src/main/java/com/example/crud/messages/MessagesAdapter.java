@@ -39,7 +39,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
         holder.nameTxt.setText(message.name);
         holder.mobileNumberTxt.setText(message.phoneNumber);
         holder.messageTextTxt.setText(message.messageText);
-        holder.deleteBtn.setOnClickListener(view -> {
+        holder.deleteImgBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(message.id);
         });
         holder.itemView.setOnClickListener(view -> {

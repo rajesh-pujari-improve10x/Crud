@@ -12,11 +12,11 @@ import com.example.crud.R;
 public class TemplateViewHolder extends RecyclerView.ViewHolder {
 
     TextView textTxt;
-    ImageButton deleteBtn;
+    ImageButton deleteImgBtn;
 
     public TemplateViewHolder(@NonNull View itemView) {
         super(itemView);
         textTxt = itemView.findViewById(R.id.text_txt);
-        deleteBtn = itemView.findViewById(R.id.delete_btn);
+        deleteImgBtn = itemView.findViewById(R.id.delete_img_btn);
     }
 }
