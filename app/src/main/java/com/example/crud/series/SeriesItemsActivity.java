@@ -23,8 +23,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SeriesItemsActivity extends BaseActivity {
-    //Todo: change the variable name in all this related places
-    private ArrayList<SeriesItem> seriesList = new ArrayList<>();
+
+    private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     private RecyclerView seriesItemsRv;
     private SeriesItemsAdapter seriesItemsAdapter;
     private ProgressBar progressBar;
@@ -82,7 +82,7 @@ public class SeriesItemsActivity extends BaseActivity {
 
     private void setupSeriesItemsAdapter() {
         seriesItemsAdapter = new SeriesItemsAdapter();
-        seriesItemsAdapter.setData(seriesList);
+        seriesItemsAdapter.setData(seriesItems);
         seriesItemsAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
