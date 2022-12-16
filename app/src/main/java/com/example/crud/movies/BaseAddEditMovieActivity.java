@@ -56,7 +56,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
     //Todo: change the method name fetchSeriesItems
     private void fetchSeriesItems() {
-        Call<List<Series>> call = crudService.fetchSeries();
+        Call<List<Series>> call = crudService.fetchSeriesItems();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
