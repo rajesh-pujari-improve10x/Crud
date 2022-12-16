@@ -9,7 +9,7 @@ import com.example.crud.base.BaseActivity;
 
 public class BaseAddEditTemplateActivity extends BaseActivity {
 
-    protected EditText messageTxt;
+    protected EditText messageTextTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,8 @@ public class BaseAddEditTemplateActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.base_add_edit_template_menu, menu);
         return true;
     }
-    //Todo: change the id name and variable name message_text_txt, messageTextTxt
+
     private void initViews() {
-        messageTxt = findViewById(R.id.message_txt);
+        messageTextTxt = findViewById(R.id.message_text_txt);
     }
 }
