@@ -54,7 +54,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
         seriesSp.setAdapter(customSeriesAdapter);
     }
-    //Todo: change the method name fetchSeriesItems
+
     private void fetchSeriesItems() {
         Call<List<SeriesItem>> call = crudService.fetchSeriesItems();
         call.enqueue(new Callback<List<SeriesItem>>() {
