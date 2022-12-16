@@ -7,7 +7,7 @@ import android.widget.Spinner;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
-import com.example.crud.series.Series;
+import com.example.crud.series.SeriesItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     protected EditText imageUrlTxt;
     protected EditText descriptionTxt;
     protected CustomSeriesAdapter customSeriesAdapter;
-    private ArrayList<Series> seriesItems = new ArrayList<>();
+    private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     private Movie movie;
 
     @Override
@@ -56,11 +56,11 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
     //Todo: change the method name fetchSeriesItems
     private void fetchSeriesItems() {
-        Call<List<Series>> call = crudService.fetchSeriesItems();
-        call.enqueue(new Callback<List<Series>>() {
+        Call<List<SeriesItem>> call = crudService.fetchSeriesItems();
+        call.enqueue(new Callback<List<SeriesItem>>() {
             @Override
-            public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-                List<Series> seriesItems = response.body();
+            public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
+                List<SeriesItem> seriesItems = response.body();
                 customSeriesAdapter.addAll(seriesItems);
                 if (movie != null) {
                     showData();
@@ -68,7 +68,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Series>> call, Throwable t) {
+            public void onFailure(Call<List<SeriesItem>> call, Throwable t) {
                 showToast("Failed loaded data");
             }
         });
@@ -80,8 +80,8 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         imageUrlTxt.setText(movie.imageUrl);
         descriptionTxt.setText(movie.description);
         for (int i = 0; i < customSeriesAdapter.getCount(); i++) {
-            Series series = customSeriesAdapter.getItem(i);
-            if (movie.seriesId.equals(series.seriesId)) {
+            SeriesItem seriesItem = customSeriesAdapter.getItem(i);
+            if (movie.seriesId.equals(seriesItem.seriesId)) {
                 seriesSp.setSelection(i);
             }
         }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".series.BaseAddEditSeriesActivity">
+    tools:context=".seriesItem.BaseAddEditSeriesItemActivity">
 
     <TextView
         android:id="@+id/textView6"

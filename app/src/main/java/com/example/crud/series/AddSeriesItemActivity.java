@@ -10,8 +10,8 @@ import com.example.crud.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-    //Todo: change the all series files name
-public class AddSeriesActivity extends BaseAddEditSeriesActivity{
+
+public class AddSeriesItemActivity extends BaseAddEditSeriesItemActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +33,16 @@ public class AddSeriesActivity extends BaseAddEditSeriesActivity{
     }
 
     private void addSeries(String seriesId, String title, String imageUrl) {
-        Series series = new Series(seriesId, title, imageUrl);
-        Call<Series> call = crudService.createSeriesItem(series);
-        call.enqueue(new Callback<Series>() {
+        SeriesItem seriesItem = new SeriesItem(seriesId, title, imageUrl);
+        Call<SeriesItem> call = crudService.createSeriesItem(seriesItem);
+        call.enqueue(new Callback<SeriesItem>() {
             @Override
-            public void onResponse(Call<Series> call, Response<Series> response) {
+            public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
                 finish();
             }
 
             @Override
-            public void onFailure(Call<Series> call, Throwable t) {
+            public void onFailure(Call<SeriesItem> call, Throwable t) {
                 showToast("Failed Added Series");
             }
         });
