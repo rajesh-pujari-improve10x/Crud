@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class SeriesItemsActivity extends BaseActivity {
     //Todo: change the variable name in all this related places
-    private ArrayList<Series> seriesList = new ArrayList<>();
+    private ArrayList<SeriesItem> seriesList = new ArrayList<>();
     private RecyclerView seriesItemsRv;
     private SeriesItemsAdapter seriesItemsAdapter;
     private ProgressBar progressBar;
@@ -48,7 +48,7 @@ public class SeriesItemsActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add) {
-            Intent intent = new Intent(this, AddSeriesActivity.class);
+            Intent intent = new Intent(this, AddSeriesItemActivity.class);
             startActivity(intent);
             return true;
         } else {
@@ -90,8 +90,8 @@ public class SeriesItemsActivity extends BaseActivity {
             }
 
             @Override
-            public void onEdit(Series series) {
-                editSeries(series);
+            public void onEdit(SeriesItem seriesItem) {
+                editSeries(seriesItem);
                 showToast("Successfully Edit Series");
             }
         });
@@ -99,17 +99,17 @@ public class SeriesItemsActivity extends BaseActivity {
     //Todo: change the fetch, create, delete and update methods name in the SeriesItemsActivity and AddSeriesItemActivity
     private void fetchData() {
         showProgressBar();
-        Call<List<Series>> call = crudService.fetchSeriesItems();
-        call.enqueue(new Callback<List<Series>>() {
+        Call<List<SeriesItem>> call = crudService.fetchSeriesItems();
+        call.enqueue(new Callback<List<SeriesItem>>() {
             @Override
-            public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
+            public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
                 hideProgressBar();
-                List<Series> series = response.body();
-                seriesItemsAdapter.setData(series);
+                List<SeriesItem> seriesItems = response.body();
+                seriesItemsAdapter.setData(seriesItems);
             }
 
             @Override
-            public void onFailure(Call<List<Series>> call, Throwable t) {
+            public void onFailure(Call<List<SeriesItem>> call, Throwable t) {
                 hideProgressBar();
                 showToast("Failed to load Data");
             }
@@ -134,9 +134,9 @@ public class SeriesItemsActivity extends BaseActivity {
         });
     }
 
-    private void editSeries(Series series) {
-        Intent intent = new Intent(this, EditSeriesActivity.class);
-        intent.putExtra(Constants.KEY_SERIES, series);
+    private void editSeries(SeriesItem seriesItem) {
+        Intent intent = new Intent(this, EditSeriesItemActivity.class);
+        intent.putExtra(Constants.KEY_SERIES, seriesItem);
         startActivity(intent);
     }
 }
