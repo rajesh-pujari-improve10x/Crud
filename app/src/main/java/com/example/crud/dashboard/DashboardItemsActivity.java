@@ -15,9 +15,6 @@ public class DashboardItemsActivity extends BaseActivity {
     private ArrayList<DashboardItem> dashboardItems;
     private RecyclerView dashboardItemsRv;
     private DashboardItemsAdapter dashboardItemsAdapter;
-    //Todo: remove the all comment lines, extra spaces and unUse instance variables in whole project
-    //Todo : change the variable name dashboardItem
-    private DashboardItem dashboardItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

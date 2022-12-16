@@ -25,7 +25,7 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
         if (item.getItemId() == R.id.save) {
             String movieId = movieIdTxt.getText().toString();
             String movieName = movieNameTxt.getText().toString();
-            SeriesItem seriesItem = (SeriesItem) seriesSp.getSelectedItem();
+            SeriesItem seriesItem = (SeriesItem) seriesItemsSp.getSelectedItem();
             String seriesId = seriesItem.seriesId;
             String imageUrl = imageUrlTxt.getText().toString();
             String description = descriptionTxt.getText().toString();
@@ -38,7 +38,6 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
 
 
     private void addMovie(String movieId, String seriesId, String movieName, String imageUrl, String description) {
-       //Todo: already given the comment
         Movie movie = new Movie(movieId, seriesId, movieName, imageUrl, description);
         Call<Movie> call = crudService.createMovie(movie);
         call.enqueue(new Callback<Movie>() {

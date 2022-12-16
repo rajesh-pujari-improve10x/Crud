@@ -24,7 +24,6 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
         if (item.getItemId() == R.id.save) {
             String name = nameTxt.getText().toString();
             String phoneNumber = phoneNumberTxt.getText().toString();
-            //Todo: change the variable name messageTxt to messageTextTxt all places
             String messageText = messageTextTxt.getText().toString();
             addMessage(name, phoneNumber, messageText);
             return true;
@@ -39,7 +38,6 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
-                showToast("Successfully added message");
                 finish();
             }
 
