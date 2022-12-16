@@ -23,7 +23,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     protected Spinner seriesSp;
     protected EditText imageUrlTxt;
     protected EditText descriptionTxt;
-    protected CustomSeriesAdapter customSeriesAdapter;
+    protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
     private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     protected Movie movie;
 
@@ -52,8 +52,8 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     private void setupSeriesItemsSp() {
-        customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
-        seriesSp.setAdapter(customSeriesAdapter);
+        customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
+        seriesSp.setAdapter(customSeriesItemsAdapter);
     }
 
     private void fetchSeriesItems() {
@@ -62,7 +62,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
             @Override
             public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
                 List<SeriesItem> seriesItems = response.body();
-                customSeriesAdapter.addAll(seriesItems);
+                customSeriesItemsAdapter.addAll(seriesItems);
                 if (movie != null) {
                     showData();
                 }
@@ -80,8 +80,8 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         movieNameTxt.setText(movie.title);
         imageUrlTxt.setText(movie.imageUrl);
         descriptionTxt.setText(movie.description);
-        for (int i = 0; i < customSeriesAdapter.getCount(); i++) {
-            SeriesItem seriesItem = customSeriesAdapter.getItem(i);
+        for (int i = 0; i < customSeriesItemsAdapter.getCount(); i++) {
+            SeriesItem seriesItem = customSeriesItemsAdapter.getItem(i);
             if (movie.seriesId.equals(seriesItem.seriesId)) {
                 seriesSp.setSelection(i);
             }
