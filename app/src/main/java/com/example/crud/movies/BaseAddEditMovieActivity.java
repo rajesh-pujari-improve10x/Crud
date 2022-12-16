@@ -25,7 +25,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     protected EditText descriptionTxt;
     protected CustomSeriesAdapter customSeriesAdapter;
     private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
-    private Movie movie;
+    protected Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     private void initViews() {
         movieIdTxt = findViewById(R.id.movie_id_txt);
         movieNameTxt = findViewById(R.id.movie_name_txt);
+        //Todo: change the variable seriesSp to seriesItemsSp name and id (series_sp to series_items_sp)
         seriesSp = findViewById(R.id.series_sp);
         imageUrlTxt = findViewById(R.id.image_url_txt);
         descriptionTxt = findViewById(R.id.description_txt);

@@ -22,8 +22,8 @@ public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
         notifyDataSetChanged();
     }
 
-    void setOnItemActionListener(OnItemActionListener actionListener) {
-        this.onItemActionListener = actionListener;
+    void setOnItemActionListener(OnItemActionListener onItemActionListener) {
+        this.onItemActionListener = onItemActionListener;
     }
 
     @NonNull
