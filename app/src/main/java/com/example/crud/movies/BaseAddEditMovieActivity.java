@@ -32,8 +32,8 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
         initViews();
-        fetchSeriesList();
-        setupSeriesListSp();
+        fetchSeriesItems();
+        setupSeriesItemsSp();
     }
 
     @Override
@@ -49,13 +49,13 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         imageUrlTxt = findViewById(R.id.image_url_txt);
         descriptionTxt = findViewById(R.id.description_txt);
     }
-    //Todo: change the method name setupSeriesItemsSp
-    private void setupSeriesListSp() {
+
+    private void setupSeriesItemsSp() {
         customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
         seriesSp.setAdapter(customSeriesAdapter);
     }
     //Todo: change the method name fetchSeriesItems
-    private void fetchSeriesList() {
+    private void fetchSeriesItems() {
         Call<List<Series>> call = crudService.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
             @Override
