@@ -10,5 +10,10 @@ public class Template implements Serializable {
     public String id;
     public String messageText;
 
-    //Todo: Create a constructor in Template java class after use the constructor in the addMessage and updateMessage Method
+    public Template() {
+    }
+
+    public Template(String messageText) {
+        this.messageText = messageText;
+    }
 }
