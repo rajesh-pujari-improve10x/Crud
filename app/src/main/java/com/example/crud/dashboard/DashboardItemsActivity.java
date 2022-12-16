@@ -15,6 +15,7 @@ public class DashboardItemsActivity extends BaseActivity {
     private ArrayList<DashboardItem> dashboardItems;
     private RecyclerView dashboardItemsRv;
     private DashboardItemsAdapter dashboardItemsAdapter;
+    //Todo: remove the all comment lines, extra spaces and unUse instance variables in whole project
     //Todo : change the variable name dashboardItem
     private DashboardItem dashboardItem;
 
@@ -36,9 +37,9 @@ public class DashboardItemsActivity extends BaseActivity {
         dashboardItems.add(messages);
         DashboardItem templates = new DashboardItem("Templates", "https://static.thenounproject.com/png/1021190-200.png");
         dashboardItems.add(templates);
-        DashboardItem seriesItems = new DashboardItem("Series", "https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png");
+        DashboardItem seriesItems = new DashboardItem("Series", "https://www.sleepspa.in/wp-content/uploads/2020/04/money-heist-netflix.jpeg");
         dashboardItems.add(seriesItems);
-        DashboardItem movies = new DashboardItem("Movies", "https://images.frandroid.com/wp-content/uploads/2019/07/android-messages.png");
+        DashboardItem movies = new DashboardItem("Movies", "https://collegerealitycheck.com/wp-content/uploads/film-studies-degree-374366191-1024x768.jpg");
         dashboardItems.add(movies);
     }
 
