@@ -99,7 +99,7 @@ public class SeriesItemsActivity extends BaseActivity {
     //Todo: change the fetch, create, delete and update methods name in the SeriesItemsActivity and AddSeriesItemActivity
     private void fetchData() {
         showProgressBar();
-        Call<List<Series>> call = crudService.fetchSeries();
+        Call<List<Series>> call = crudService.fetchSeriesItems();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
@@ -118,7 +118,7 @@ public class SeriesItemsActivity extends BaseActivity {
 
     private void deleteSeries(String id) {
         showProgressBar();
-        Call<Void> call = crudService.deleteSeries(id);
+        Call<Void> call = crudService.deleteSeriesItem(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
