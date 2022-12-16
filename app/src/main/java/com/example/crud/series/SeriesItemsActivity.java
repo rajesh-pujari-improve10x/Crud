@@ -63,8 +63,7 @@ public class SeriesItemsActivity extends BaseActivity {
     }
 
     private void initView() {
-        //Todo: change the id name series_items_rv
-        seriesItemsRv = findViewById(R.id.series_rv);
+        seriesItemsRv = findViewById(R.id.series_items_rv);
         progressBar = findViewById(R.id.progress_bar);
     }
 
