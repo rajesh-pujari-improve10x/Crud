@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.crud.R;
 
 public class MovieViewHolder extends RecyclerView.ViewHolder {
-    //Todo: already given the comment in dashboardViewHolder
+
     ImageView movieImg;
     TextView titleTxt;
     ImageButton deleteImgBtn;

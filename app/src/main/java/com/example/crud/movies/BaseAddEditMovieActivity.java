@@ -20,7 +20,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
     protected EditText movieIdTxt;
     protected EditText movieNameTxt;
-    protected Spinner seriesSp;
+    protected Spinner seriesItemsSp;
     protected EditText imageUrlTxt;
     protected EditText descriptionTxt;
     protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
@@ -45,15 +45,14 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     private void initViews() {
         movieIdTxt = findViewById(R.id.movie_id_txt);
         movieNameTxt = findViewById(R.id.movie_name_txt);
-        //Todo: change the variable seriesSp to seriesItemsSp name and id (series_sp to series_items_sp)
-        seriesSp = findViewById(R.id.series_sp);
+        seriesItemsSp = findViewById(R.id.series_items_sp);
         imageUrlTxt = findViewById(R.id.image_url_txt);
         descriptionTxt = findViewById(R.id.description_txt);
     }
 
     private void setupSeriesItemsSp() {
         customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
-        seriesSp.setAdapter(customSeriesItemsAdapter);
+        seriesItemsSp.setAdapter(customSeriesItemsAdapter);
     }
 
     private void fetchSeriesItems() {
@@ -83,7 +82,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         for (int i = 0; i < customSeriesItemsAdapter.getCount(); i++) {
             SeriesItem seriesItem = customSeriesItemsAdapter.getItem(i);
             if (movie.seriesId.equals(seriesItem.seriesId)) {
-                seriesSp.setSelection(i);
+                seriesItemsSp.setSelection(i);
             }
         }
     }
