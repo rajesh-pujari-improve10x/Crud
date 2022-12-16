@@ -14,10 +14,10 @@ import com.example.crud.R;
 import com.example.crud.series.SeriesItem;
 
 import java.util.List;
-    //Todo: change the class name CustomSeriesItemsAdapter
-public class CustomSeriesAdapter extends ArrayAdapter<SeriesItem> {
 
-    public CustomSeriesAdapter(@NonNull Context context, int resource, @NonNull List<SeriesItem> objects) {
+public class CustomSeriesItemsAdapter extends ArrayAdapter<SeriesItem> {
+
+    public CustomSeriesItemsAdapter(@NonNull Context context, int resource, @NonNull List<SeriesItem> objects) {
         super(context, resource, objects);
     }
 
