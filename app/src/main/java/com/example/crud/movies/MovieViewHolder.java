@@ -14,12 +14,12 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
     //Todo: already given the comment in dashboardViewHolder
     ImageView movieImg;
     TextView titleTxt;
-    ImageButton deleteBtn;
+    ImageButton deleteImgBtn;
 
     public MovieViewHolder(@NonNull View itemView) {
         super(itemView);
         movieImg = itemView.findViewById(R.id.movie_img);
         titleTxt = itemView.findViewById(R.id.title_txt);
-        deleteBtn = itemView.findViewById(R.id.delete_btn);
+        deleteImgBtn = itemView.findViewById(R.id.delete_img_btn);
     }
 }
