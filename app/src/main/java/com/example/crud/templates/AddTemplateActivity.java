@@ -13,7 +13,6 @@ import retrofit2.Response;
 
 public class AddTemplateActivity extends BaseAddEditTemplateActivity{
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +36,6 @@ public class AddTemplateActivity extends BaseAddEditTemplateActivity{
         call.enqueue(new Callback<Template>() {
             @Override
             public void onResponse(Call<Template> call, Response<Template> response) {
-                showToast("Successfully Added Template");
                 finish();
             }
 

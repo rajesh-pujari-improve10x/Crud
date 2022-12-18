@@ -105,7 +105,6 @@ public class MoviesActivity extends BaseActivity {
                 hideProgressBar();
                 List<Movie> movies = response.body();
                 moviesAdapter.setData(movies);
-                showToast("Successfully loaded data");
             }
 
             @Override

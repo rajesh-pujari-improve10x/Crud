@@ -51,7 +51,6 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showToast("Successfully Updated Message");
                 finish();
             }
 

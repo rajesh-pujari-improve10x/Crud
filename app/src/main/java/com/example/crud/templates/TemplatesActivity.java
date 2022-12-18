@@ -122,7 +122,6 @@ public class TemplatesActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 hideProgressBar();
-                showToast("Successfully Deleted Template");
                 fetchTemplates();
             }
 

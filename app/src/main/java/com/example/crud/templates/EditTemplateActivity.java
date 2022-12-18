@@ -47,7 +47,6 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showToast("Successfully Updated Template");
                 finish();
             }
 

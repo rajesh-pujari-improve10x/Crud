@@ -97,13 +97,11 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void fetchMessages() {
-        log("fetching Messages Started Api");
         showProgressBar();
         Call<List<Message>> call = crudService.fetchMessages();
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                log("Successfully received From Api");
                 hideProgressBar();
                 List<Message> messages = response.body();
                 messagesAdapter.setData(messages);
@@ -124,7 +122,6 @@ public class MessagesActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 hideProgressBar();
-                showToast("Successfully deleted message");
                 fetchMessages();
             }
 
