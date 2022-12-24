@@ -7,21 +7,22 @@ import android.os.Bundle;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityDashBoardItemsBinding;
 
 import java.util.ArrayList;
 
 public class DashboardItemsActivity extends BaseActivity {
 
+    private ActivityDashBoardItemsBinding binding;
     private ArrayList<DashboardItem> dashboardItems;
-    private RecyclerView dashboardItemsRv;
     private DashboardItemsAdapter dashboardItemsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_board);
+        binding = ActivityDashBoardItemsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Dashboard");
-        initViews();
         setupData();
         setupDashboardItemsAdapter();
         setupDashboardItemsRv();
@@ -40,13 +41,9 @@ public class DashboardItemsActivity extends BaseActivity {
         dashboardItems.add(movies);
     }
 
-    private void initViews() {
-        dashboardItemsRv = findViewById(R.id.dashboard_items_rv);
-    }
-
     private void setupDashboardItemsRv() {
-        dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
-        dashboardItemsRv.setAdapter(dashboardItemsAdapter);
+        binding.dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
+        binding.dashboardItemsRv.setAdapter(dashboardItemsAdapter);
     }
 
     private void setupDashboardItemsAdapter() {

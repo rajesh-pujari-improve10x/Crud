@@ -22,9 +22,9 @@ public class AddSeriesItemActivity extends BaseAddEditSeriesItemActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save) {
-            String seriesId = seriesIdTxt.getText().toString();
-            String seriesName = seriesNameTxt.getText().toString();
-            String seriesImageUrl = seriesImageUrlTxt.getText().toString();
+            String seriesId = binding.seriesIdTxt.getText().toString();
+            String seriesName = binding.seriesNameTxt.getText().toString();
+            String seriesImageUrl = binding.seriesImageUrlTxt.getText().toString();
             addSeriesItem(seriesId, seriesName, seriesImageUrl);
             return true;
         } else {

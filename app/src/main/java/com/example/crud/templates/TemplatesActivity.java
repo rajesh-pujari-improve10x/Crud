@@ -2,18 +2,17 @@ package com.example.crud.templates;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityTemplatesBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +24,15 @@ import retrofit2.Response;
 public class TemplatesActivity extends BaseActivity {
 
     private ArrayList<Template> templates = new ArrayList<>();
-    private RecyclerView templatesRv;
     private TemplatesAdapter templatesAdapter;
-    private ProgressBar progressBar;
+    private ActivityTemplatesBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_templates);
+        binding = ActivityTemplatesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Templates");
-        initViews();
         setupTemplatesAdapter();
         setupTemplatesRv();
     }
@@ -62,22 +60,17 @@ public class TemplatesActivity extends BaseActivity {
         fetchTemplates();
     }
 
-    private void initViews() {
-        progressBar = findViewById(R.id.progress_bar);
-        templatesRv = findViewById(R.id.templates_rv);
-    }
-
     private void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
+        binding.progressBar.setVisibility(View.GONE);
     }
 
     private void setupTemplatesRv() {
-        templatesRv.setLayoutManager(new LinearLayoutManager(this));
-        templatesRv.setAdapter(templatesAdapter);
+        binding.templatesRv.setLayoutManager(new LinearLayoutManager(this));
+        binding.templatesRv.setAdapter(templatesAdapter);
     }
 
     private void setupTemplatesAdapter() {

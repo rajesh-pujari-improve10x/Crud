@@ -6,25 +6,22 @@ import android.widget.EditText;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityBaseAddEditTemplateBinding;
 
 public class BaseAddEditTemplateActivity extends BaseActivity {
 
-    protected EditText messageTextTxt;
+    protected ActivityBaseAddEditTemplateBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_add_edit_template);
-        initViews();
+        binding = ActivityBaseAddEditTemplateBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.base_add_edit_template_menu, menu);
         return true;
-    }
-
-    private void initViews() {
-        messageTextTxt = findViewById(R.id.message_text_txt);
     }
 }

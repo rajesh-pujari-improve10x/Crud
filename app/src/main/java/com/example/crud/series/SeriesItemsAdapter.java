@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
+import com.example.crud.databinding.SeriesItemBinding;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
     @NonNull
     @Override
     public SeriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.series_item, parent, false);
-        SeriesViewHolder seriesViewHolder = new SeriesViewHolder(view);
+        SeriesItemBinding binding = SeriesItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        SeriesViewHolder seriesViewHolder = new SeriesViewHolder(binding);
         return seriesViewHolder;
     }
 
@@ -38,13 +39,13 @@ public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
     public void onBindViewHolder(@NonNull SeriesViewHolder holder, int position) {
         SeriesItem seriesItem = seriesItems.get(position);
         if (seriesItem.imageUrl != null && seriesItem.imageUrl.isEmpty() == false) {
-            Picasso.get().load(seriesItem.imageUrl).into(holder.seriesItemImg);
+            Picasso.get().load(seriesItem.imageUrl).into(holder.binding.seriesItemImg);
         }
-        holder.titleTxt.setText(seriesItem.title);
-        holder.deleteImgBtn.setOnClickListener(view -> {
+        holder.binding.titleTxt.setText(seriesItem.title);
+        holder.binding.deleteImgBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(seriesItem.id);
         });
-        holder.itemView.setOnClickListener(view -> {
+        holder.binding.getRoot().setOnClickListener(view -> {
             onItemActionListener.onEdit(seriesItem);
         });
     }

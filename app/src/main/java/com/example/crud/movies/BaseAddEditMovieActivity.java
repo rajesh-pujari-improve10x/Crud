@@ -7,6 +7,7 @@ import android.widget.Spinner;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityBaseAddEditMovieBinding;
 import com.example.crud.series.SeriesItem;
 
 import java.util.ArrayList;
@@ -18,11 +19,7 @@ import retrofit2.Response;
 
 public class BaseAddEditMovieActivity extends BaseActivity {
 
-    protected EditText movieIdTxt;
-    protected EditText movieNameTxt;
-    protected Spinner seriesItemsSp;
-    protected EditText imageUrlTxt;
-    protected EditText descriptionTxt;
+    protected ActivityBaseAddEditMovieBinding binding;
     protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
     private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     protected Movie movie;
@@ -30,8 +27,8 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_add_edit_movie);
-        initViews();
+        binding = ActivityBaseAddEditMovieBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         fetchSeriesItems();
         setupSeriesItemsSp();
     }
@@ -42,17 +39,9 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         return true;
     }
 
-    private void initViews() {
-        movieIdTxt = findViewById(R.id.movie_id_txt);
-        movieNameTxt = findViewById(R.id.movie_name_txt);
-        seriesItemsSp = findViewById(R.id.series_items_sp);
-        imageUrlTxt = findViewById(R.id.image_url_txt);
-        descriptionTxt = findViewById(R.id.description_txt);
-    }
-
     private void setupSeriesItemsSp() {
         customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
-        seriesItemsSp.setAdapter(customSeriesItemsAdapter);
+        binding.seriesItemsSp.setAdapter(customSeriesItemsAdapter);
     }
 
     private void fetchSeriesItems() {
@@ -75,14 +64,14 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     protected void showData() {
-        movieIdTxt.setText(movie.moviesId);
-        movieNameTxt.setText(movie.title);
-        imageUrlTxt.setText(movie.imageUrl);
-        descriptionTxt.setText(movie.description);
+        binding.movieIdTxt.setText(movie.moviesId);
+        binding.movieNameTxt.setText(movie.title);
+        binding.imageUrlTxt.setText(movie.imageUrl);
+        binding.descriptionTxt.setText(movie.description);
         for (int i = 0; i < customSeriesItemsAdapter.getCount(); i++) {
             SeriesItem seriesItem = customSeriesItemsAdapter.getItem(i);
             if (movie.seriesId.equals(seriesItem.seriesId)) {
-                seriesItemsSp.setSelection(i);
+                binding.seriesItemsSp.setSelection(i);
             }
         }
     }

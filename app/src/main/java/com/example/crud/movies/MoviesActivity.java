@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityMoviesBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +26,15 @@ import retrofit2.Response;
 public class MoviesActivity extends BaseActivity {
 
     private ArrayList<Movie> movies = new ArrayList<>();
-    private RecyclerView moviesRv;
     private MoviesAdapter moviesAdapter;
-    private ProgressBar progressBar;
+    private ActivityMoviesBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movies);
+        binding = ActivityMoviesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Movies");
-        initViews();
         setupMoviesAdapter();
         setupMoviesRv();
     }
@@ -62,22 +62,17 @@ public class MoviesActivity extends BaseActivity {
         fetchMovies();
     }
 
-    private void initViews() {
-        moviesRv = findViewById(R.id.movies_rv);
-        progressBar = findViewById(R.id.progress_bar);
-    }
-
     private void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
+        binding.progressBar.setVisibility(View.GONE);
     }
 
     private void setupMoviesRv() {
-        moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
-        moviesRv.setAdapter(moviesAdapter);
+        binding.moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
+        binding.moviesRv.setAdapter(moviesAdapter);
     }
 
     private void setupMoviesAdapter() {
