@@ -37,9 +37,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         Message message = messages.get(position);
-        holder.binding.nameTxt.setText(message.name);
-        holder.binding.mobileNumberTxt.setText(message.phoneNumber);
-        holder.binding.messageTextTxt.setText(message.messageText);
+        holder.binding.setMessage(message);
         holder.binding.deleteImgBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(message.id);
         });
