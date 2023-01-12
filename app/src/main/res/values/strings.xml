@@ -8,5 +8,6 @@
     <string name="series">Series</string>
     <string name="image_url">Image Url</string>
     <string name="description">Description</string>
-
+    <string name="series_id">Series Id</string>
+    <string name="series_name">Series Name</string>
 </resources>
