@@ -23,7 +23,7 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="@string/series_id"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
             android:text="@string/series_name"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
             android:text="@string/image_url"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_black"
             android:textSize="20sp"
             android:textStyle="bold" />
 

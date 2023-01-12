@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/movie_id"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/movie_name"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="12dp"
             android:text="@string/series"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/image_url"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="@string/description"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
