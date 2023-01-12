@@ -38,7 +38,8 @@
                 android:paddingRight="4dp"
                 android:paddingBottom="4dp"
                 android:text="@{movie.title}"
-                tools:text="TextView"/>
+                tools:text="TextView"
+                android:textColor="@color/text_color"/>
         </LinearLayout>
 
         <ImageButton
