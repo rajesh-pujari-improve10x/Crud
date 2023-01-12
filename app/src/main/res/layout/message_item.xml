@@ -44,7 +44,7 @@
                         android:paddingRight="4dp"
                         android:text="@{message.name}"
                         tools:text="Rajesh"
-                        android:textColor="#423F3F"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <TextView
@@ -54,7 +54,7 @@
                         android:layout_weight="1"
                         android:text="@{message.phoneNumber}"
                         tools:text="+91 9000000001"
-                        android:textColor="#423F3F"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -66,6 +66,7 @@
                     android:maxLines="4"
                     android:paddingTop="4dp"
                     android:text="@{message.messageText}"
+                    android:textColor="@color/black"
                     tools:text="Hii" />
 
             </LinearLayout>
